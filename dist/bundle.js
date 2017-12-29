@@ -1,8 +1,8 @@
 "use strict";
 (()=>{
-	let old_addEventListener = window.addEventListener;
+	let old_addEventListener = EventTarget.prototype.addEventListener;
 	// To improve page performance:
-	window.addEventListener = function(type, func, options){
+	EventTarget.prototype.addEventListener = function(type, func, options){
 		if ((type === "mousewheel" || type === "touchmove" || type === "touchstart" || type === "touchmove") && typeof options !== "object")
 			old_addEventListener.call(this, type, func, {passive:1, capture:options});
 		else
