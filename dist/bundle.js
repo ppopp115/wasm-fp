@@ -1,3 +1,4 @@
+"use strict";
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -60,21 +61,34 @@
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
-
-	module.exports = React;
+	"use strict";
+	module.exports = window.React || {};
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
-
-	module.exports = ReactDOM;
-
+	"use strict";
+	module.exports = window.ReactDOM || {};
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	/*********************************************************/
+	// The following code has been graciously iNjected by
+	// annonyco for the totally not illegitimate purposes of
+	// saving/loaing the data to the localStorage
+	var loadedresumeSTATE, hookersToBeDone;
+	try {
+		loadedresumeSTATE = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "{}");
+		let saveFunc = () => {
+			try {
+				localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
+			} catch(e) {}
+		};
+		window.addEventListener("beforeunload", saveFunc);
+		setInterval(saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shutsdown
+	} catch(e) {}
+	/*********************************************************/
+	exports.__esModule = true;
 	const React = __webpack_require__(1);
 	const State_1 = __webpack_require__(4);
 	const Editor_1 = __webpack_require__(5);
@@ -96,13 +110,9 @@
 	    };
 	}
 	function toAddress(n) {
-	    var s = n.toString(16);
-	    while (s.length < 6) {
-	        s = "0" + s;
-	    }
-	    return "0x" + s;
+	    return "0x" + n.toString(16).padStart(6, "0");
 	}
-	function padRight(s, n, c) {
+	/*function padRight(s, n, c) {
 	    s = String(s);
 	    while (s.length < n) {
 	        s = s + c;
@@ -115,7 +125,9 @@
 	        s = c + s;
 	    }
 	    return s;
-	}
+	}*/
+	var padRight = String.prototype.padEnd.call.bind(String.prototype.padEnd);
+	var padLeft = String.prototype.padStart.call.bind(String.prototype.padEnd);
 	var x86JumpInstructions = [
 	    "jmp", "ja", "jae", "jb", "jbe", "jc", "je", "jg", "jge", "jl", "jle", "jna", "jnae",
 	    "jnb", "jnbe", "jnc", "jne", "jng", "jnge", "jnl", "jnle", "jno", "jnp", "jns", "jnz",
@@ -164,7 +176,7 @@
 	}
 	const defaultHarnessText = `var wasmModule = new WebAssembly.Module(wasmCode);\n` +
 	    `var wasmInstance = new WebAssembly.Instance(wasmModule, wasmImports);\n` +
-	    `log(wasmInstance.exports.main());\n`;
+	    `log(wasmInstance.exports.add(1000, 100));\n`;
 	class AppComponent extends React.Component {
 	    constructor() {
 	        super();
@@ -180,7 +192,7 @@
 	        this.installKeyboardShortcuts();
 	        State_1.State.app = this;
 	        this.state = {
-	            compilerOptions: "-O3 -std=C99",
+	            compilerOptions: "-O1 -std=C++1z",
 	            compilerVersion: 1,
 	            isCompiling: false,
 	            isC: true,
@@ -203,10 +215,10 @@
 	            this.runHarness();
 	            e.preventDefault();
 	        });
-	        Mousetrap.bind(['command+s'], (e) => {
+	        /*Mousetrap.bind(['command+s'], (e) => {
 	            this.saveFiddleStateToURI();
 	            e.preventDefault();
-	        });
+	        });*/
 	    }
 	    componentDidMount() {
 	        this.init();
@@ -269,6 +281,7 @@
 	        xhr.send(JSON.stringify(this.saveFiddleState()));
 	    }
 	    init() {
+		hookersToBeDone = this;
 	        let uri = window.location.search.substring(1);
 	        if (uri) {
 	            let i = uri.indexOf("/");
@@ -279,12 +292,14 @@
 	            this.forceUpdate();
 	        }
 	        else {
-	            this.loadFiddledState({
-	                editors: {
-	                    "main": "int main() { \n  return 42;\n}",
-	                    "harness": defaultHarnessText
-	                }
-	            });
+			// #begin AnonyCo
+			loadedresumeSTATE = loadedresumeSTATE || {};
+			loadedresumeSTATE.editors = loadedresumeSTATE.editors || {};
+			loadedresumeSTATE.editors.main = loadedresumeSTATE.editors.main || 'extern "c" int add(int x, int y) {\n  return x + y;\n}';
+			loadedresumeSTATE.editors.harness = loadedresumeSTATE.editors.harness || defaultHarnessText;
+			this.state.compilerOptions = loadedresumeSTATE.compilerOptions || this.state.compilerOptions;
+			// #end AnonyCo
+	            this.loadFiddledState(loadedresumeSTATE);
 	        }
 	    }
 	    saveFiddleState() {
@@ -1375,3 +1390,8 @@
 /***/ }
 /******/ ]);
 //# sourceMappingURL=bundle.js.map
+
+
+
+
+
