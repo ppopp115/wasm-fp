@@ -1,36 +1,21 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8" />
-    <title>WasmFiddle</title>
-</head>
-
-<body>
-    <div id="app" class="appWrapper"></div>
-    <link type="text/css" rel="stylesheet" href="lib/app.css" />
-    <!-- Dependencies -->
-    <script src="./lib/react.js"></script>
-    <script src="./lib/react-dom.js"></script>
-
-    <script src="lib/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/src-noconflict/ext-language_tools.js"></script>
-    <script src="lib/mousetrap.min.js"></script>
-    <script src="https://use.fontawesome.com/d0dc131437.js"></script>
-
-    <!-- Main -->
-    <script src="./dist/bundle.js"></script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-93230088-2', 'auto');
-        ga('send', 'pageview');
-        window.addEventListener('serviceevent', function (e) {
-          ga('send', 'event', e.detail.category, e.detail.action, e.detail.label);
-        });
-      </script>
-</body>
-
+	<head>
+		<meta charset="UTF-8" />
+		<!-- Dependencies -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js" defer=""></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js" defer=""></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" defer=""></script>
+		<script src="lib/src-noconflict/ext-language_tools.js" defer=""></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.0/mousetrap.min.js" defer=""></script>
+		<!--<script src="https://use.fontawesome.com/d0dc131437.js" defer=""></script>-->
+		<!-- The main script -->
+		<script src="./dist/bundle.js" defer=""></script>
+		<!-- CSS -->
+		<link type="text/css" rel="stylesheet" href="lib/app.css" defer=""/>
+		<title>WasmFiddle</title>
+	</head>
+	<body background="#000">
+		<div id="app" class="appWrapper"></div>
+	</body>
 </html>
