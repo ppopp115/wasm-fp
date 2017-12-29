@@ -3,10 +3,14 @@
 	let old_addEventListener = EventTarget.prototype.addEventListener;
 	// To improve page performance:
 	EventTarget.prototype.addEventListener = function(type, func, options){
-		if ((type === "mousewheel" || type === "touchmove" || type === "touchstart" || type === "touchmove") && typeof options !== "object")
+		if ((type === "mousewheel" || type === "touchmove" || type === "scroll") && typeof options !== "object")
 			old_addEventListener.call(this, type, func, {passive:1, capture:options});
 		else
 			old_addEventListener.call(this, type, func, options);
+	};
+	let old_preventDefault = EventTarget.prototype.preventDefault;
+	EventTarget.prototype.preventDefault = function() {
+		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll") old_preventDefault.call(this);	
 	};
 })();
 /******/ (function(modules) { // webpackBootstrap
@@ -98,13 +102,12 @@
 		};
 		loadedresumeSTATE = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "{}");
 		AnonyCo_saveFunc = () => {
-			try {
-				localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
-			} catch(e) {}
+			localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
 		};
 		window.addEventListener("beforeunload", AnonyCo_saveFunc, {passive:1});
 		setInterval(AnonyCo_saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shutsdown
 	} catch(e) {}
+	var AnonyCo_previous_code = "", AnonyCo_previous_result, AnonyCo_previous_wast, AnonyCo_previous_annotations;
 	/*********************************************************/
 	exports.__esModule = true;
 	const React = __webpack_require__(1);
@@ -116,17 +119,10 @@
 	const iframesandbox_1 = __webpack_require__(9);
 	let { demangle } = __webpack_require__(10);
 	function lazyLoad(s, cb) {
-	    var self = this;
-	    var d = window.document;
-	    var b = d.body;
-	    var e = d.createElement("script");
-	    e.async = true;
+	    var e = document.head.appendChild(document.createElement("script"));
 	    e.src = s;
 	    b.appendChild(e);
-	    e.onload = function () {
-	        cb.call(this);
-	    };
-	}
+	    e.addEventListener("load", () => cb.call(this), {passive: 1}}
 	function toAddress(n) {
 	    return "0x" + n.toString(16).padStart(6, "0");
 	}
@@ -356,20 +352,30 @@ int add(int x, int y) {
 	        }
 	    }
 	    build() {
-	        let self = this;
-	        let main = this.mainEditor;
-	        let options = this.state.compilerOptions;
-	        this.compileToWasm(main.editor.getValue(), options, (result, wast, annotations) => {
-	            main.editor.getSession().clearAnnotations();
-	            if (annotations.length) {
-	                main.editor.getSession().setAnnotations(annotations);
-	                this.appendOutput(String(result));
-	                return;
-	            }
-	            self.wasmCode = result;
-	            self.wastAssembly = {};
-	            this.forceUpdate();
-	        });
+	        var self = this;
+	        var main = this.mainEditor;
+	        var options = this.state.compilerOptions;
+		var AnonyCo_current_code = main.editor.getValue();
+		var when_done_func = (result, wast, annotations) => {
+			AnonyCo_previous_result = result;
+			AnonyCo_previous_wast = wast;
+			AnonyCo_previous_annotations = annotations;
+			main.editor.getSession().clearAnnotations();
+			if (annotations.length) {
+				main.editor.getSession().setAnnotations(annotations);
+				this.appendOutput(String(result));
+				return;
+			}
+			self.wasmCode = result;
+			self.wastAssembly = {};
+			this.forceUpdate();
+		};
+		if (AnonyCo_current_code === AnonyCo_previous_code){
+			when_done_func(AnonyCo_previous_result, AnonyCo_previous_wast, AnonyCo_previous_annotations);
+		} else {
+			AnonyCo_previous_code = AnonyCo_current_code;
+			this.compileToWasm(AnonyCo_current_code, options, when_done_func);
+		}
 	    }
 	    disassemble(json) {
 	        let self = this;
@@ -549,6 +555,9 @@ int add(int x, int y) {
 	        this.outputEditor.editor.insert(s + "\n");
 	        this.outputEditor.editor.gotoLine(Infinity);
 	    }
+		AnonyCo_saveFunc(){
+			AnonyCo_saveFunc();
+		}
 	    share() {
 	        this.saveFiddleStateToURI();
 	        State_1.State.sendAppEvent("save", "Fiddle state to URI");
@@ -814,7 +823,11 @@ int add(int x, int y) {
 	        let self = this;
 	        editor.commands.addCommands([{
 	                bindKey: { win: "Ctrl-S", mac: "Command-S" }, exec: function () {
-	                    State_1.State.app.share();
+				try {
+					State_1.State.app.AnonyCo_saveFunc();
+				} catch(e) {
+	                		State_1.State.app.share();
+				}
 	                }
 	            },
 	            {
