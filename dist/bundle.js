@@ -295,7 +295,13 @@
 			// #begin AnonyCo
 			loadedresumeSTATE = loadedresumeSTATE || {};
 			loadedresumeSTATE.editors = loadedresumeSTATE.editors || {};
-			loadedresumeSTATE.editors.main = loadedresumeSTATE.editors.main || 'extern "c" int add(int x, int y) {\n  return x + y;\n}';
+			loadedresumeSTATE.editors.main = loadedresumeSTATE.editors.main || 
+`#if defined(__cplusplus)
+	extern "c" // to prevent C++ name mangling
+#endif
+int add(int x, int y) {
+	return x + y;
+}`;
 			loadedresumeSTATE.editors.harness = loadedresumeSTATE.editors.harness || defaultHarnessText;
 			this.state.compilerOptions = loadedresumeSTATE.compilerOptions || this.state.compilerOptions;
 			// #end AnonyCo
