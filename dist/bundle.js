@@ -113,7 +113,7 @@
 	const syscall_1 = __webpack_require__(8);
 	const iframesandbox_1 = __webpack_require__(9);
 	let { demangle } = __webpack_require__(10);
-	lazyLoad = function (s, cb) {
+	function lazyLoad(s, cb) {
 	    var e = document.head.appendChild(document.createElement("script"));
 	    e.src = s;
 	    b.appendChild(e);
