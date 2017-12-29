@@ -3,7 +3,7 @@
 	let old_preventDefault = EventTarget.prototype.preventDefault;
 	EventTarget.prototype.preventDefault = function() {
 		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll" && this.type !== "touchstart")
-			try { old_preventDefault.call(this); } catch(e) {}
+			old_preventDefault.call(this);
 	};
 	addEventListener("touchstart", e => old_preventDefault.call(e), {passive: 0});
 	
@@ -95,14 +95,6 @@
 	// saving/loaing the data to the localStorage
 	var loadedresumeSTATE, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0};
 	try {
-		let old_addEventListener = window.addEventListener;
-		// To improve page performance:
-		window.addEventListener = function(type, func, options){
-			if ((type === "mousewheel" || type === "touchmove" || type === "touchstart" || type === "touchmove") && typeof options !== "object")
-				old_addEventListener.call(this, type, func, {passive:1, capture:options});
-			else
-				old_addEventListener.call(this, type, func, options);
-		};
 		loadedresumeSTATE = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "{}");
 		AnonyCo_saveFunc = () => {
 			localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
@@ -121,11 +113,12 @@
 	const syscall_1 = __webpack_require__(8);
 	const iframesandbox_1 = __webpack_require__(9);
 	let { demangle } = __webpack_require__(10);
-	function lazyLoad(s, cb) {
+	lazyLoad = function (s, cb) {
 	    var e = document.head.appendChild(document.createElement("script"));
 	    e.src = s;
 	    b.appendChild(e);
-	    e.addEventListener("load", () => cb.call(this), {passive: 1}}
+	    e.addEventListener("load", () => cb.call(this), {passive: 1});
+	};
 	function toAddress(n) {
 	    return "0x" + n.toString(16).padStart(6, "0");
 	}
