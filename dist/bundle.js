@@ -1,16 +1,18 @@
 "use strict";
 (()=>{
+	let old_preventDefault = EventTarget.prototype.preventDefault;
+	EventTarget.prototype.preventDefault = function() {
+		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll" && this.type !== "touchstart") old_preventDefault.call(this);	
+	};
+	addEventListener("touchstart", e => old_preventDefault.call(e), {passive: 0});
+	
 	let old_addEventListener = EventTarget.prototype.addEventListener;
 	// To improve page performance:
 	EventTarget.prototype.addEventListener = function(type, func, options){
-		if ((type === "mousewheel" || type === "touchmove" || type === "scroll") && typeof options !== "object")
+		if ((type === "mousewheel" || type === "touchmove" || type === "scroll" && this.type !== "touchstart") && typeof options !== "object")
 			old_addEventListener.call(this, type, func, {passive:1, capture:options});
 		else
 			old_addEventListener.call(this, type, func, options);
-	};
-	let old_preventDefault = EventTarget.prototype.preventDefault;
-	EventTarget.prototype.preventDefault = function() {
-		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll") old_preventDefault.call(this);	
 	};
 })();
 /******/ (function(modules) { // webpackBootstrap
@@ -105,7 +107,7 @@
 			localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
 		};
 		window.addEventListener("beforeunload", AnonyCo_saveFunc, {passive:1});
-		setInterval(AnonyCo_saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shutsdown
+		setInterval(AnonyCo_saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shuts down
 	} catch(e) {}
 	var AnonyCo_previous_code = "", AnonyCo_previous_result, AnonyCo_previous_wast, AnonyCo_previous_annotations;
 	/*********************************************************/
