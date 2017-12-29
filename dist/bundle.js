@@ -74,18 +74,26 @@
 /***/ function(module, exports, __webpack_require__) {
 	/*********************************************************/
 	// The following code has been graciously iNjected by
-	// annonyco for the totally not illegitimate purposes of
+	// AnnonyCo for the totally not illegitimate purposes of
 	// saving/loaing the data to the localStorage
-	var loadedresumeSTATE, hookersToBeDone;
+	var loadedresumeSTATE, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0};
 	try {
+		let old_addEventListener = window.addEventListener;
+		// To improve scroll performance:
+		window.addEventListener = function(type, func, options){
+			if ((type === "mousewheel" || type === "touchmove" || type === "touchstart" || type === "touchmove") && typeof options !== "object")
+				old_addEventListener.call(this, type, func, {passive:1, capture:options});
+			else
+				old_addEventListener.call(this, type, func, options);
+		};
 		loadedresumeSTATE = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "{}");
-		let saveFunc = () => {
+		AnonyCo_saveFunc = () => {
 			try {
 				localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
 			} catch(e) {}
 		};
-		window.addEventListener("beforeunload", saveFunc);
-		setInterval(saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shutsdown
+		window.addEventListener("beforeunload", AnonyCo_saveFunc, {passive:1});
+		setInterval(AnonyCo_saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shutsdown
 	} catch(e) {}
 	/*********************************************************/
 	exports.__esModule = true;
