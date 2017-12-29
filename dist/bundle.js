@@ -1,15 +1,16 @@
 "use strict";
 (()=>{
 	let old_preventDefault = EventTarget.prototype.preventDefault;
-	EventTarget.prototype.preventDefault = function() {
-		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll" && this.type !== "touchstart") old_preventDefault.call(this);	
+	EventTarget.prototype.preventDefault = () => {
+		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll" && this.type !== "touchstart")
+			try { old_preventDefault.call(this); } catch(e) {}
 	};
 	addEventListener("touchstart", e => old_preventDefault.call(e), {passive: 0});
 	
 	let old_addEventListener = EventTarget.prototype.addEventListener;
 	// To improve page performance:
 	EventTarget.prototype.addEventListener = function(type, func, options){
-		if ((type === "mousewheel" || type === "touchmove" || type === "scroll" && this.type !== "touchstart") && typeof options !== "object")
+		if ((type === "mousewheel" || type === "touchmove" || type === "scroll" && type !== "touchstart") && typeof options !== "object")
 			old_addEventListener.call(this, type, func, {passive:1, capture:options});
 		else
 			old_addEventListener.call(this, type, func, options);
