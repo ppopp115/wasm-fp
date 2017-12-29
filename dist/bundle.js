@@ -1,4 +1,14 @@
 "use strict";
+(()=>{
+	let old_addEventListener = window.addEventListener;
+	// To improve page performance:
+	window.addEventListener = function(type, func, options){
+		if ((type === "mousewheel" || type === "touchmove" || type === "touchstart" || type === "touchmove") && typeof options !== "object")
+			old_addEventListener.call(this, type, func, {passive:1, capture:options});
+		else
+			old_addEventListener.call(this, type, func, options);
+	};
+})();
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -79,7 +89,7 @@
 	var loadedresumeSTATE, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0};
 	try {
 		let old_addEventListener = window.addEventListener;
-		// To improve scroll performance:
+		// To improve page performance:
 		window.addEventListener = function(type, func, options){
 			if ((type === "mousewheel" || type === "touchmove" || type === "touchstart" || type === "touchmove") && typeof options !== "object")
 				old_addEventListener.call(this, type, func, {passive:1, capture:options});
