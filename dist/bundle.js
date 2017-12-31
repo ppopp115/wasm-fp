@@ -203,7 +203,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	        this.installKeyboardShortcuts();
 	        State_1.State.app = this;
 	        this.state = {
-	            compilerOptions: "-O1 -std=C++1z",
+	            compilerOptions: "-O1 -std=C98",
 	            compilerVersion: 1,
 	            isCompiling: false,
 	            isC: true,
@@ -214,7 +214,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	        };
 	    }
 	    installKeyboardShortcuts() {
-	        Mousetrap.bind(['ctrl+shift+enter'], (e) => {
+	        /*Mousetrap.bind(['ctrl+shift+enter'], (e) => {
 	            this.build();
 	            e.preventDefault();
 	        });
@@ -225,11 +225,12 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	        Mousetrap.bind(['ctrl+enter'], (e) => {
 	            this.runHarness();
 	            e.preventDefault();
-	        });
-	        /*Mousetrap.bind(['command+s'], (e) => {
-	            this.saveFiddleStateToURI();
-	            e.preventDefault();
 	        });*/
+	        Mousetrap.bind(['command+s'], (e) => {
+	            //this.saveFiddleStateToURI();
+			AnonyCo_saveFunc();
+	            e.preventDefault();
+	        });
 	    }
 	    componentDidMount() {
 	        this.init();
@@ -308,9 +309,11 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 			loadedresumeSTATE.editors = loadedresumeSTATE.editors || {};
 			loadedresumeSTATE.editors.main = loadedresumeSTATE.editors.main || 
 `#if defined(__cplusplus)
-	extern "c" // to prevent C++ name mangling
+#define cppexport extern "c" // to prevent C++ name mangling
+#else
+#define cppexport
 #endif
-int add(int x, int y) {
+cppexport int add(int x, int y) {
 	return x + y;
 }`;
 			loadedresumeSTATE.editors.harness = loadedresumeSTATE.editors.harness || defaultHarnessText;
@@ -799,23 +802,24 @@ int add(int x, int y) {
 	        let editor = this.editor = ace.edit(this.container);
 	        var theme = true ? "ace/theme/monokai" : "ace/theme/github";
 	        // editor.setValue(this.props.source, -1);
-	        editor.setReadOnly(this.props.readOnly);
-	        editor.setTheme(theme);
-	        editor.setFontSize(this.props.fontSize);
-	        editor.getSession().setUseSoftTabs(true);
-	        editor.getSession().setTabSize(2);
-	        editor.setShowPrintMargin(false);
 	        editor.setOptions({
-	            wrap: true,
-	            enableBasicAutocompletion: true,
-	            // enableSnippets: true,
-	            // enableLiveAutocompletion: true,
-	            showLineNumbers: this.props.showLineNumbers,
-	            showGutter: this.props.showGutter
+			readonly: this.props.readOnly,
+			theme: theme,
+			mode: this.props.mode,
+			fontSize: this.props.fontSize,
+			wrap: true,
+			enableBasicAutocompletion: true,
+			// enableSnippets: true,
+			// enableLiveAutocompletion: true,
+			showLineNumbers: this.props.showLineNumbers,
+			showGutter: this.props.showGutter,
+			highlightActiveLine: true,
+			useSoftTabs: false,
+			showPrintMargin: false,
+			tabSize: 4
 	        });
 	        editor.$blockScrolling = Infinity;
 	        editor.renderer.setScrollMargin(10, 10);
-	        editor.getSession().setMode(this.props.mode);
 	        let action = this.props.action;
 	        let self = this;
 	        editor.commands.addCommands([{
@@ -827,7 +831,7 @@ int add(int x, int y) {
 				}
 	                }
 	            },
-	            {
+	            /*{
 	                bindKey: { win: "Ctrl-Shift-Return", mac: "Ctrl-Shift-Return" }, exec: function () {
 	                    State_1.State.app.build();
 	                }
@@ -841,7 +845,7 @@ int add(int x, int y) {
 	                bindKey: { win: "Ctrl-Return", mac: "Ctrl-Return" }, exec: function () {
 	                    State_1.State.app.runHarness();
 	                }
-	            }
+	            }*/
 	        ]);
 	    }
 	    onChange() {
@@ -874,8 +878,8 @@ int add(int x, int y) {
 	class CompilerOptionsComponent extends React.Component {
 	    constructor() {
 	        super();
-	        this.dialects = ["-std=C89", "-std=C99", "-std=C++98", "-std=C++11", "-std=C++14", "-std=C++1z"];
-	        this.optimizationLevels = ["-O0", "-O1", "-O2", "-O3", "-O4", "-Os"];
+	        this.dialects = ["-std=C89", "-std=C94", "-std=C99", "-std=C11", "-std=C17", "-std=C++98", "-std=C++11", "-std=C++14", "-std=C++1z", "-std=gnu89", "-std=gnu99", "-std=gnu11", "-std=gnu17", "-std=gnu++98", "-std=gnu++11", "-std=gnu++14", "-std=gnu++1z", "-std=cl1.0", "-std=cl1.1", "-std=cl1.2", "-std=cl2.0", "-std=CUDA"];
+	        this.optimizationLevels = ["-O0", "-O1", "-O2", "-O3", "-Ofast", "-O4", "-Os", "-Oz"];
 	        this.state = {
 	            dialect: "-std=C99",
 	            optimizationLevel: "-O3",
@@ -910,10 +914,10 @@ int add(int x, int y) {
 	    loadState(options, compilerVersion) {
 	        let s = {};
 	        options.split(" ").forEach(o => {
-	            if (o.indexOf("-O") == 0) {
+	            if (o.indexOf("-O") === 0) {
 	                s.optimizationLevel = o;
 	            }
-	            else if (o.indexOf("-std=") == 0) {
+	            else if (o.indexOf("-std=") === 0) {
 	                s.dialect = o;
 	            }
 	        });
@@ -937,7 +941,7 @@ int add(int x, int y) {
 	            React.createElement("br", null),
 	            React.createElement("span", null,
 	                React.createElement("label", null,
-	                    "New compiler:",
+	                    "Newer Clang compiler:",
 	                    React.createElement("input", { type: "checkbox", checked: this.state.compilerVersion == 2, onChange: this.newCompilerChanged.bind(this) }))));
 	    }
 	}
@@ -1099,18 +1103,10 @@ int add(int x, int y) {
 	        var body = args.pop();
 	        var iframe = document.createElement('iframe');
 	        iframe.className = 'hidden';
-	        const BodyAtLine = 6;
-	        iframe.src = URL.createObjectURL(new Blob([`<!DOCTYPE html>
-	  <html>
-	  <head><meta charset='utf-8'></head>
-	  <body>
-	    <script>
-	  function run() {
-	  ${body}
-	  }
-	  frameElement.onready();
-	    </script>
-	  </body></html>`], { type: 'text/html' }));
+	        const BodyAtLine = 1;
+	        iframe.src = URL.createObjectURL(new Blob([`<!DOCTYPE html><html><head><meta charset="utf-8"/></head><body><script>function run(){
+${body}
+}frameElement.onready();</script></body></html>`], { type: 'text/html' }));
 	        document.body.appendChild(iframe);
 	        this._iframe = iframe;
 	        var onerror = (e, url, line) => {
