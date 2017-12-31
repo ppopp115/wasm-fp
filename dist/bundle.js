@@ -116,9 +116,8 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	let { demangle } = __webpack_require__(10);
 	function lazyLoad(s, cb) {
 	    var e = document.head.appendChild(document.createElement("script"));
+	    e.onload = cb.call(this);
 	    e.src = s;
-	    b.appendChild(e);
-	    e.addEventListener("load", () => cb.call(this), {passive: 1});
 	};
 	function toAddress(n) {
 	    return "0x" + n.toString(16).padStart(6, "0");
@@ -203,7 +202,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	        this.installKeyboardShortcuts();
 	        State_1.State.app = this;
 	        this.state = {
-	            compilerOptions: "-O1 -std=C98",
+	            compilerOptions: "-O1 -std=C99",
 	            compilerVersion: 1,
 	            isCompiling: false,
 	            isC: true,
@@ -237,7 +236,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	    }
 	    compilerOptionsChanged(options, compilerVersion) {
 	        let isC = options.indexOf("C++") < 0;
-	        this.setState({ compilerOptions: options, compilerVersion, isC });
+	        this.setState({ compilerOptions: options, compilerVersion: compilerVersion, isC: !!isC });
 	    }
 	    onResize() {
 	        // State.resize();
@@ -347,7 +346,7 @@ cppexport int add(int x, int y) {
 	            this.setState({
 	                compilerOptions: fiddleState.compilerOptions,
 	                compilerVersion: fiddleState.compilerVersion,
-	                isC
+	                isC: !!isC
 	            });
 	        }
 	    }
@@ -882,7 +881,7 @@ cppexport int add(int x, int y) {
 	        this.optimizationLevels = ["-O0", "-O1", "-O2", "-O3", "-Ofast", "-O4", "-Os", "-Oz"];
 	        this.state = {
 	            dialect: "-std=C99",
-	            optimizationLevel: "-O3",
+	            optimizationLevel: "-O1",
 	            compilerVersion: 1
 	        };
 	    }
@@ -906,10 +905,11 @@ cppexport int add(int x, int y) {
 	            this.onChange();
 	        });
 	    }
-	    dialectChanged(e) {
-	        this.setState({ dialect: e.target.value }, () => {
-	            this.onChange();
-	        });
+	    dialectChanged() {
+	        this.setState(
+{dialect: document.getElementById("cdui_select").value + " " + document.getElementById("cdui_textarea").value},
+			() => this.onChange()
+		);
 	    }
 	    loadState(options, compilerVersion) {
 	        let s = {};
@@ -933,16 +933,54 @@ cppexport int add(int x, int y) {
 	        }
 	    }
 	    render() {
-	        return React.createElement("div", null,
-	            React.createElement("span", null,
-	                React.createElement("select", { title: "Optimization Level", value: this.state.optimizationLevel, onChange: this.optimizationLevelChanged.bind(this) }, this.optimizationLevels.map(x => React.createElement("option", { key: x }, x))),
-	                ' ',
-	                React.createElement("select", { title: "Dialect", value: this.state.dialect, onChange: this.dialectChanged.bind(this) }, this.dialects.map(x => React.createElement("option", { key: x }, x)))),
-	            React.createElement("br", null),
-	            React.createElement("span", null,
-	                React.createElement("label", null,
-	                    "Newer Clang compiler:",
-	                    React.createElement("input", { type: "checkbox", checked: this.state.compilerVersion == 2, onChange: this.newCompilerChanged.bind(this) }))));
+		return React.createElement(
+			"div", null,
+			React.createElement(
+				"span", null,
+				React.createElement(
+					"select", {
+						title: "Optimization Level",
+						value: this.state.optimizationLevel,
+						onChange: this.optimizationLevelChanged.bind(this)
+					},
+					this.optimizationLevels.map(x => React.createElement("option", { key: x }, x))
+				),
+				' ',
+				React.createElement(
+					"select", {
+						title: "Dialect",
+						value: (this.state.dialect+" ").split(" ",1)[0],
+						class: "cdui_select",
+						onChange: this.dialectChanged.bind(this)
+					},
+					this.dialects.map(x => React.createElement("option", { key: x }, x))
+				)
+			),
+			React.createElement("br", null),
+			React.createElement("textArea", {
+				autocapitalize: "none",
+				wrap: "soft",
+				class: "cdui_textarea",
+				value: (this.state.dialect+"").split(" ").slice(1).join(" "),
+				style: "resize:vertical;width:100%",
+				onInput: this.dialectChanged.bind(this)
+			});
+			React.createElement("br", null),
+			React.createElement(
+				"span", null,
+				React.createElement(
+					"label", null,
+					"Newer Clang compiler:",
+					React.createElement(
+						"input", {
+							type: "checkbox",
+							checked: this.state.compilerVersion == 2,
+							onChange: this.newCompilerChanged.bind(this)
+						}
+					)
+				)
+			)
+		);
 	    }
 	}
 	exports.CompilerOptionsComponent = CompilerOptionsComponent;
