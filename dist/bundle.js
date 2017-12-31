@@ -3,7 +3,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 (()=>{
 	let old_preventDefault = Event.prototype.preventDefault;
 	Event.prototype.preventDefault = function() {
-		if (this.type !== "mousewheel" && this.type !== "touchmove" && type !== "scroll" && this.type !== "touchstart")
+		if (this.type !== "mousewheel" && this.type !== "touchmove" && this.type !== "scroll" && this.type !== "touchstart")
 			old_preventDefault.call(this);
 	};
 	addEventListener("touchstart", e => old_preventDefault.call(e), {passive: 0});
