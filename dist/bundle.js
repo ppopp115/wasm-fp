@@ -804,7 +804,7 @@ cppexport int add(int x, int y) {
 	        // editor.setValue(this.props.source, -1);
 	        editor.setOptions({
 			readonly: this.props.readOnly,
-			//theme: theme, // local css already imported making this unnececary
+			theme: theme, // local css already imported making this unnececary
 			mode: this.props.mode,
 			fontSize: this.props.fontSize,
 			wrap: true,
