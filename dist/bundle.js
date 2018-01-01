@@ -802,7 +802,7 @@ cppexport int add(int x, int y) {
 	        var theme = true ? "ace/theme/monokai" : "ace/theme/github";
 	        // editor.setValue(this.props.source, -1);
 	        editor.setOptions({
-			readonly: this.props.readOnly,
+			readOnly: this.props.readOnly,
 			theme: theme, // local css already imported making this unnececary
 			mode: this.props.mode,
 			fontSize: this.props.fontSize,
@@ -962,9 +962,10 @@ cppexport int add(int x, int y) {
 				wrap: "soft",
 				class: "cdui_textarea",
 				value: (this.state.dialect+"").split(" ").slice(1).join(" "),
-				style: "resize:vertical;width:100%",
+				style: {resize:"vertical",width:"100%"},
+				onInput: this.dialectChanged.bind(this),
 				onInput: this.dialectChanged.bind(this)
-			});
+			}),
 			React.createElement("br", null),
 			React.createElement(
 				"span", null,
