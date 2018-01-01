@@ -161,7 +161,7 @@ a:hover {
   height: 600px;
 }
 
-.settingsOverlay, .canvasOverlay, .helpOverlay {
+.settingsOverlay, .canvasOverlay, .helpOverlay, .fileExplorerOverlay {
   top: 0;
   left: 0;
   right: 0;
