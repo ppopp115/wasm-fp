@@ -576,6 +576,16 @@ cppexport int add(int x, int y) {
 	    onViewChanged(e) {
 	        this.setState({ view: e.target.value });
 	    }
+	    loadFileExplorer() {
+		var fileExplorerOverlay = document.getElementsByTagName("fileExplorerOverlay")[0];
+		fileExplorerOverlay.style.display = "";
+		
+	    }
+	    closeFileExplorer() {
+		var fileExplorerOverlay = document.getElementsByTagName("fileExplorerOverlay")[0];
+		fileExplorerOverlay.style.display = "none";
+		
+	    }
 	    render() {
 	        if (this.viewEditor) {
 	            if (this.state.view === "wast") {
@@ -632,6 +642,21 @@ cppexport int add(int x, int y) {
 	                        React.createElement("div", { className: "settingSection" },
 	                            React.createElement(CompilerOptions_1.CompilerOptionsComponent, { options: this.state.compilerOptions, compilerVersion: this.state.compilerVersion, onChange: this.compilerOptionsChanged.bind(this) }),
 	                            ' ')),
+	                    React.createElement("div", { className: "fileExplorerOverlay", style: { display: this.state.showFileExplorer ? "" : "none" } },
+	                        React.createElement("span", { className: "editorHeaderTitle" }, "File Explorer"),
+	                        React.createElement("div", { className: "editorHeader" },
+	                            React.createElement("div", { className: "editorHeaderButtons" },
+	                                React.createElement("a", { title: "Toggle File Explorer", onClick: this.closeFileExplorer.bind(this) },
+	                                    "Hide ",
+	                                    React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
+	                        React.createElement("table", { className: "fileexplorer" },
+					React.createElement("thead", null,
+						React.createElement("th", {style:{width:"5em"}}, "Type"),
+						React.createElement("th", null, "Name"),
+						React.createElement("th", {style:{width:"4em"}}, "Size")
+					),
+				),
+	                    ),
 	                    React.createElement("div", { className: "helpOverlay", style: { display: this.state.showHelp ? "" : "none" } },
 	                        React.createElement("div", { className: "editorHeader" },
 	                            React.createElement("span", { className: "editorHeaderTitle" }, "Help"),
@@ -662,13 +687,16 @@ cppexport int add(int x, int y) {
 	                        React.createElement("div", { className: "settingSection" }, "Prints memory contents."),
 	                        React.createElement("div", { className: "settingSectionHeader" }, "lib.setStackPtr(heap: Uint8Array, ptr: number)"),
 	                        React.createElement("div", { className: "settingSection" }, "Sets the default stack pointer address.")),
-	                    React.createElement("img", { src: "img/web-assembly-icon-white-64px.png", className: "waIcon" })),
-	                React.createElement("div", { className: "gShareURI" }, window.location.origin + window.location.pathname + '?' + State_1.State.fiddleURI),
-	                React.createElement("div", { className: "gShareButton" },
-	                    React.createElement("a", { title: "Build: CTRL + Shift + Return", onClick: this.build.bind(this) },
-	                        React.createElement("i", { className: "fa fa-cog " + (this.state.isCompiling ? "fa-spin" : "") + " fa-lg", "aria-hidden": "true" })),
+	                    React.createElement("img", { src: "img/web-assembly-icon-white-64px.png", className: "waIcon", "aria-hidden": "true" })),
+	                React.createElement("div", { className: "gShareURI", "aria-hidden": "true" }, window.location.pathname + '?' + State_1.State.fiddleURI),
+	                React.createElement("div", { className: "gShareButton", "aria-hidden": "true" },
+	                    React.createElement("a", { title: "File Manager", onClick: this.loadFileExplorer.bind(this)) },
+	                        React.createElement("i", { className: "fa fa-folder", "aria-hidden": "true" })),
 	                    ' ',
-	                    React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Run: CTRL + Return", onClick: this.runHarness.bind(this) },
+	                    React.createElement("a", { title: "Build/Compile", onClick: this.build.bind(this) },
+	                        React.createElement("i", { className: "fa fa-cog" + (this.state.isCompiling ? "fa-spin" : "") + " fa-lg", "aria-hidden": "true" })),
+	                    ' ',
+	                    React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Run Code", onClick: this.runHarness.bind(this) },
 	                        React.createElement("i", { className: "fa fa-play-circle fa-lg", "aria-hidden": "true" })),
 	                    ' ',
 	                    React.createElement("a", { title: "Toggle Settings", onClick: this.toggleSettings.bind(this) },
