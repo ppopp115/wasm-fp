@@ -27,11 +27,11 @@ html, body {
   width: 100%;
   grid-template-rows: 100%;
   grid-template-columns: 40px auto 160px;
+  height: 1.5em;
 }
 
 .gShareURI {
-  margin-left: 10px;
-  font-size: 16px;
+  margin-left: -.75em;
   font-family: Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace;
   align-self: center;
 }
@@ -139,8 +139,8 @@ html, body {
 
 .waIcon {
   padding: 4px;
-  width: 32px;
-  height: 32px;
+  width: 1.125em;
+  height: 1.125em;
 }
 
 .fa-cloud-upload:hover {
