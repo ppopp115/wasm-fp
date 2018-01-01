@@ -967,7 +967,7 @@ cppexport int add(int x, int y) {
 				onInput: this.dialectChanged.bind(this)
 			}),
 			React.createElement("br", null),
-			"For more information on clang compiler flags that you can use in the textbox above, please see "
+			"For more information on clang compiler flags that you can use in the textbox above, please see ",
 			React.createElement(
 				"a", {
 					href: "http://releases.llvm.org/5.0.0/tools/clang/docs/ClangCommandLineReference.html",
