@@ -6,7 +6,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 		if (this.type !== "mousewheel" && this.type !== "touchmove" && this.type !== "scroll" && this.type !== "touchstart")
 			old_preventDefault.call(this);
 	};
-	addEventListener("touchstart", e => old_preventDefault.call(e), {passive: 0});
+	addEventListener("touchmove", e => old_preventDefault.call(e), {passive: 0});
 	
 	let old_addEventListener = EventTarget.prototype.addEventListener;
 	// To improve page performance:
