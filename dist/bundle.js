@@ -877,7 +877,7 @@ cppexport int add(int x, int y) {
 	class CompilerOptionsComponent extends React.Component {
 	    constructor() {
 	        super();
-	        this.dialects = ["-std=C89", "-std=C94", "-std=C99", "-std=C11", "-std=C17", "-std=C++98", "-std=C++11", "-std=C++14", "-std=C++1z", "-std=gnu89", "-std=gnu99", "-std=gnu11", "-std=gnu1z", "-std=gnu++98", "-std=gnu++11", "-std=gnu++14", "-std=gnu++1z", "-std=cl1.0", "-std=cl1.1", "-std=cl1.2", "-std=cl2.0", "-std=CUDA"];
+	        this.dialects = ["-std=C89", "-std=C94", "-std=C99", "-std=C11", "-std=C17", "-std=C++98", "-std=C++11", "-std=C++14", "-std=C++1z", "-std=gnu89", "-std=gnu99", "-std=gnu11", "-std=gnu17", "-std=gnu++98", "-std=gnu++11", "-std=gnu++14", "-std=gnu++1z", "-std=cl1.0", "-std=cl1.1", "-std=cl1.2", "-std=cl2.0", "-std=CUDA"];
 	        this.optimizationLevels = ["-O0", "-O1", "-O2", "-O3", "-Ofast", "-O4", "-Os", "-Oz"];
 	        this.state = {
 	            dialect: "-std=C99",
