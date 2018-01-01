@@ -15,7 +15,7 @@ html, body {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 40px auto 288px;
+  grid-template-rows: 1.5em auto 288px;
   grid-template-columns: 100%;
 }
 
@@ -40,6 +40,8 @@ html, body {
   font-family: Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace;
   justify-self: center;
   align-self: center;
+  width: 14em;
+  text-align: justify;
 }
 
 .gV2 {
@@ -224,4 +226,8 @@ iframe.hidden {
 .disabled-link {
   pointer-events: none;
   color: #AAAAAA;
+}
+.gShareButton>a {
+    display: inline-block;
+    padding: 0 .125em;
 }
