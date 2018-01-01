@@ -577,12 +577,12 @@ cppexport int add(int x, int y) {
 	        this.setState({ view: e.target.value });
 	    }
 	    loadFileExplorer() {
-		var fileExplorerOverlay = document.getElementsByTagName("fileExplorerOverlay")[0];
+		var fileExplorerOverlay = document.getElementsByClassName("fileExplorerOverlay")[0];
 		fileExplorerOverlay.style.display = "";
 		
 	    }
 	    closeFileExplorer() {
-		var fileExplorerOverlay = document.getElementsByTagName("fileExplorerOverlay")[0];
+		var fileExplorerOverlay = document.getElementsByClassName("fileExplorerOverlay")[0];
 		fileExplorerOverlay.style.display = "none";
 		
 	    }
