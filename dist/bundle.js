@@ -690,7 +690,7 @@ cppexport int add(int x, int y) {
 	                    React.createElement("img", { src: "img/web-assembly-icon-white-64px.png", className: "waIcon", "aria-hidden": "true" })),
 	                React.createElement("div", { className: "gShareURI", "aria-hidden": "true" }, window.location.pathname + '?' + State_1.State.fiddleURI),
 	                React.createElement("div", { className: "gShareButton", "aria-hidden": "true" },
-	                    React.createElement("a", { title: "File Manager", onClick: this.loadFileExplorer.bind(this)) },
+	                    React.createElement("a", { title: "File Manager", onClick: this.loadFileExplorer.bind(this) },
 	                        React.createElement("i", { className: "fa fa-folder", "aria-hidden": "true" })),
 	                    ' ',
 	                    React.createElement("a", { title: "Build/Compile", onClick: this.build.bind(this) },
