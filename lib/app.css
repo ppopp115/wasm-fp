@@ -170,8 +170,11 @@ a:hover {
   margin-bottom: auto;
   margin-right: auto;
   margin-left: auto;
-  width: 600px;
-  height: 632px;
+  width: 37em;
+  max-width: 70%;
+  height: 39em;
+  max-height: 90%;
+  outline: 50vmax solid rgba(255,255,255,.7);
   position: fixed;
   z-index: 20;
   opacity: 1;
