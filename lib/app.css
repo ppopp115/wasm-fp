@@ -157,8 +157,9 @@ a:hover {
 
 .outputCanvas {
   background-color: white;
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  height: calc(100% - 3em);
+  user-select: none;
 }
 
 .settingsOverlay, .canvasOverlay, .helpOverlay, .fileExplorerOverlay {
@@ -170,10 +171,10 @@ a:hover {
   margin-bottom: auto;
   margin-right: auto;
   margin-left: auto;
-  width: 37em;
-  max-width: 70%;
-  height: 39em;
-  max-height: 90%;
+  width: calc(3em + 66vmin);
+  max-width: 69vmin;
+  height: calc(4em + 88vmin);
+  max-height: 92vmin;
   outline: 50vmax solid rgba(255,255,255,.7);
   position: fixed;
   z-index: 20;
