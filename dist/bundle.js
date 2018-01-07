@@ -135,7 +135,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	    	sharedFileStore = new iDBStorage("sharedfiles"), trashFileStore = new iDBStorage("trashfiles");
 	try {
 		var localStorage = window.localStorage;
-		loadedresumeSTATE = localStorage.AnonyCo__loadedresumeSTATE;
+		loadedresumeSTATE = JSON.parse(localStorage.AnonyCo__loadedresumeSTATE || "[]");
 		/*if (localStorage.hasOwnProperty("AnonyCo__loadedresumeSTATE")){
 			savedSTATE__filelist = [{"default": localStorage.AnonyCo__loadedresumeSTATE}, {}];
 		} else {
