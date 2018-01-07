@@ -56,18 +56,18 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
+/******/ 	/*return*/ __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
-
+/***/ async function(module, exports, __webpack_require__) {
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	const React = __webpack_require__(1);
 	const ReactDOM = __webpack_require__(2);
 	const App_1 = __webpack_require__(3);
+	await App_1.whenready;
 	if (typeof WebAssembly === "object") {
 	    ReactDOM.render(React.createElement(App_1.AppComponent, null), document.getElementById("app"));
 	}
@@ -94,27 +94,71 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	// The following code has been graciously iNjected by
 	// AnnonyCo for the totally not illegitimate purposes of
 	// saving/loaing the data to the localStorage
-	var loadedresumeSTATE, loadedresumeSTATE__list, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0}, lastOpenedFile="",
-		files = var IDBOpenDBRequest = indexedDB.open(name);
+	function iDBStorage(name) {
+		this.storename = name;
+		exports.whenready = this.ready = new Promise((resolve, reject) => {
+			var request = window.indexedDB.open(location.origin);
+			request.onupgradeneeded = e => {
+				this.db = e.target.result;
+				this.db.createObjectStore(this.storename);
+			};
+			request.onsuccess = e => {this.db = e.target.result; resolve()};
+			request.onerror   = e => {this.db = e.target.result; reject(e)};
+		});
+	};
+	iDBStorage.prototype.getItem = function(key) {
+		return new Promise((resolve, reject) => {
+			var request = this.db.transaction(this.storename/*, "readonly"*/).objectStore(this.storename).get(key);
+			request.onsuccess = e => resolve(e.target.result);
+			request.onerror = reject;
+		});
+	};
+	iDBStorage.prototype.hasItem = function(key) {
+		return this.db.transaction(this.storename/*, "readonly"*/).objectStore(this.storename).indexNames.includes(key);
+	};
+	iDBStorage.prototype.setItem = function(key, value) {
+		return new Promise((resolve, reject) => {
+			var request=this.db.transaction(this.storename,"readwrite").objectStore(this.storename).put(value,key);
+			request.onsuccess = resolve;
+			request.onerror = reject;
+		});
+	};
+	iDBStorage.prototype.deleteItem = function(key, value) {
+		return new Promise((resolve, reject) => {
+			var request = this.db.transaction(this.storename, "readwrite").objectStore(this.storename).delete(key);
+			request.onsuccess = resolve;
+			request.onerror = reject;
+		});
+	};
+	var loadedresumeSTATE, savedSTATE__filelist, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0},
+		currentlyOpenedFile="default", savedFileStore = new iDBStorage("savedfiles"),
+	    	sharedFileStore = new iDBStorage("sharedfiles"), trashFileStore = new iDBStorage("trashfiles");
 	try {
 		var localStorage = window.localStorage;
-		if (localStorage.hasOwnProperty("AnonyCo__loadedresumeSTATE")){
-			localStorage.setItem("AnonyCo__loadedresumeSTATE", localStorage.AnonyCo__loadedresumeSTATE);
-		}
-		loadedresumeSTATE__list = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "[]");
-		if (!(loadedresumeSTATE__list instanceof Array)) loadedresumeSTATE__list = [loadedresumeSTATE__list];
-		
+		loadedresumeSTATE = localStorage.AnonyCo__loadedresumeSTATE;
+		/*if (localStorage.hasOwnProperty("AnonyCo__loadedresumeSTATE")){
+			savedSTATE__filelist = [{"default": localStorage.AnonyCo__loadedresumeSTATE}, {}];
+		} else {
+			savedSTATE__filelist = JSON.parse(localStorage.getItem("savedfilelist") || "[]");
+			if (localStorage.hasOwnProperty("lastopenedfile"))
+				currentlyOpenedFile = localStorage.lastopenedfile;
+			if (!savedSTATE__filelist.hasOwnProperty(currentlyOpenedFile))currentlyOpenedFile
+			if (!(savedSTATE__filelist instanceof Array)) savedSTATE__filelist = [loadedresumeSTATE__list];
+		*/
 		AnonyCo_saveFunc = () => {
-			localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
+			try {
+				
+				localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
+			} catch(e) {}
 		};
 		window.addEventListener("beforeunload", AnonyCo_saveFunc, {passive:1});
 		setInterval(AnonyCo_saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shuts down
 	} catch(e) {
-		loadedresumeSTATE__list = {"default": (loadedresumeSTATE = {})};
+		savedSTATE__filelist = [{"default": [(loadedresumeSTATE = {})]}, {}, {}];
 	}
 	var AnonyCo_previous_code = "", AnonyCo_previous_result, AnonyCo_previous_wast, AnonyCo_previous_annotations;
 	/*********************************************************/
-	exports.__esModule = true;
+	//exports.__esModule = true;
 	const React = __webpack_require__(1);
 	const State_1 = __webpack_require__(4);
 	const Editor_1 = __webpack_require__(5);
@@ -773,9 +817,8 @@ cppexport int add(int x, int y) {
 /***/ },
 /* 4 */
 /***/ function(module, exports) {
-
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	class State {
 	    static sendServiceEvent(label) {
 	        var evt = document.createEvent('CustomEvent');
@@ -828,9 +871,8 @@ cppexport int add(int x, int y) {
 /***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
-
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	const React = __webpack_require__(1);
 	const State_1 = __webpack_require__(4);
 	class EditorComponent extends React.Component {
@@ -907,9 +949,8 @@ cppexport int add(int x, int y) {
 /***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
-
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	const React = __webpack_require__(1);
 	class CompilerOptionsComponent extends React.Component {
 	    constructor() {
@@ -1038,9 +1079,8 @@ cppexport int add(int x, int y) {
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
-
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	function UTF8ArrayToString(u8Array, idx) {
 	    var endPtr = idx;
 	    while (u8Array[endPtr])
@@ -1145,9 +1185,8 @@ cppexport int add(int x, int y) {
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
-
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	let memoryStates = new WeakMap();
 	function syscall(wasmInstance, n, ...args) {
 	    switch (n) {
@@ -1182,9 +1221,8 @@ cppexport int add(int x, int y) {
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
-
 	"use strict";
-	Object.defineProperty(exports, "__esModule", { value: true });
+	//Object.defineProperty(exports, "__esModule", { value: true });
 	class IFrameSandbox {
 	    constructor(...args) {
 	        var body = args.pop();
@@ -1506,7 +1544,6 @@ ${body}
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=bundle.js.map
 
 
 
