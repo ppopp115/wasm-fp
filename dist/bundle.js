@@ -94,15 +94,24 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	// The following code has been graciously iNjected by
 	// AnnonyCo for the totally not illegitimate purposes of
 	// saving/loaing the data to the localStorage
-	var loadedresumeSTATE, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0};
+	var loadedresumeSTATE, loadedresumeSTATE__list, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0}, lastOpenedFile="",
+		files = var IDBOpenDBRequest = indexedDB.open(name);
 	try {
-		loadedresumeSTATE = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "{}");
+		var localStorage = window.localStorage;
+		if (localStorage.hasOwnProperty("AnonyCo__loadedresumeSTATE")){
+			localStorage.setItem("AnonyCo__loadedresumeSTATE", localStorage.AnonyCo__loadedresumeSTATE);
+		}
+		loadedresumeSTATE__list = JSON.parse(localStorage.getItem("AnonyCo__loadedresumeSTATE") || "[]");
+		if (!(loadedresumeSTATE__list instanceof Array)) loadedresumeSTATE__list = [loadedresumeSTATE__list];
+		
 		AnonyCo_saveFunc = () => {
 			localStorage.setItem("AnonyCo__loadedresumeSTATE", JSON.stringify(hookersToBeDone.saveFiddleState()));
 		};
 		window.addEventListener("beforeunload", AnonyCo_saveFunc, {passive:1});
 		setInterval(AnonyCo_saveFunc, 20000); // autosave once every 20 seconds incase computer unexpectedly shuts down
-	} catch(e) {}
+	} catch(e) {
+		loadedresumeSTATE__list = {"default": (loadedresumeSTATE = {})};
+	}
 	var AnonyCo_previous_code = "", AnonyCo_previous_result, AnonyCo_previous_wast, AnonyCo_previous_annotations;
 	/*********************************************************/
 	exports.__esModule = true;
@@ -113,10 +122,10 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	const lib_1 = __webpack_require__(7);
 	const syscall_1 = __webpack_require__(8);
 	const iframesandbox_1 = __webpack_require__(9);
-	let { demangle } = __webpack_require__(10);
+	let demangle = __webpack_require__(10).demangle;
 	function lazyLoad(s, cb) {
 	    var e = document.head.appendChild(document.createElement("script"));
-	    e.onload = cb.call(this);
+	    e.onload = cb.bind(this);
 	    e.src = s;
 	};
 	function toAddress(n) {
