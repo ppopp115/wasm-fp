@@ -69,10 +69,10 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	const App_1 = __webpack_require__(3);
 	await App_1.whenready;
 	if (typeof WebAssembly === "object") {
-	    ReactDOM.render(React.createElement(App_1.AppComponent, null), document.getElementById("app"));
+		ReactDOM.render(React.createElement(App_1.AppComponent, null), document.getElementById("app"));
 	}
 	else {
-	    ReactDOM.render(React.createElement("div", { className: "notSupported" }, "WebAssembly is not yet available in your browser. Please use the latest version of Firefox or Chrome."), document.getElementById("app"));
+		ReactDOM.render(React.createElement("div", { className: "notSupported" }, "WebAssembly is not yet available in your browser. Please use the latest version of Firefox or Chrome."), document.getElementById("app"));
 	}
 
 
@@ -132,7 +132,7 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	};
 	var loadedresumeSTATE, savedSTATE__filelist, hookersToBeDone, AnonyCo_saveFunc = ()=>{throw 0},
 		currentlyOpenedFile="default", savedFileStore = new iDBStorage("savedfiles"),
-	    	sharedFileStore = new iDBStorage("sharedfiles"), trashFileStore = new iDBStorage("trashfiles");
+			sharedFileStore = new iDBStorage("sharedfiles"), trashFileStore = new iDBStorage("trashfiles");
 	try {
 		var localStorage = window.localStorage;
 		loadedresumeSTATE = JSON.parse(localStorage.AnonyCo__loadedresumeSTATE || "[]");
@@ -168,194 +168,194 @@ window.ReactDOM=React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // load Reac
 	const iframesandbox_1 = __webpack_require__(9);
 	let demangle = __webpack_require__(10).demangle;
 	function lazyLoad(s, cb) {
-	    var e = document.head.appendChild(document.createElement("script"));
-	    e.onload = cb.bind(this);
-	    e.src = s;
+		var e = document.head.appendChild(document.createElement("script"));
+		e.onload = cb.bind(this);
+		e.src = s;
 	};
 	function toAddress(n) {
-	    return "0x" + n.toString(16).padStart(6, "0");
+		return "0x" + n.toString(16).padStart(6, "0");
 	}
 	/*function padRight(s, n, c) {
-	    s = String(s);
-	    while (s.length < n) {
-	        s = s + c;
-	    }
-	    return s;
+		s = String(s);
+		while (s.length < n) {
+			s = s + c;
+		}
+		return s;
 	}
 	function padLeft(s, n, c) {
-	    s = String(s);
-	    while (s.length < n) {
-	        s = c + s;
-	    }
-	    return s;
+		s = String(s);
+		while (s.length < n) {
+			s = c + s;
+		}
+		return s;
 	}*/
 	var padRight = String.prototype.padEnd.call.bind(String.prototype.padEnd);
 	var padLeft = String.prototype.padStart.call.bind(String.prototype.padEnd);
 	var x86JumpInstructions = [
-	    "jmp", "ja", "jae", "jb", "jbe", "jc", "je", "jg", "jge", "jl", "jle", "jna", "jnae",
-	    "jnb", "jnbe", "jnc", "jne", "jng", "jnge", "jnl", "jnle", "jno", "jnp", "jns", "jnz",
-	    "jo", "jp", "jpe", "jpo", "js", "jz"
+		"jmp", "ja", "jae", "jb", "jbe", "jc", "je", "jg", "jge", "jl", "jle", "jna", "jnae",
+		"jnb", "jnbe", "jnc", "jne", "jng", "jnge", "jnl", "jnle", "jno", "jnp", "jns", "jnz",
+		"jo", "jp", "jpe", "jpo", "js", "jz"
 	];
 	function isBranch(instr) {
-	    return x86JumpInstructions.indexOf(instr.mnemonic) >= 0;
+		return x86JumpInstructions.indexOf(instr.mnemonic) >= 0;
 	}
 	var base64DecodeMap = [
-	    62, 0, 0, 0, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
-	    0, 0, 0, 0, 0, 0, 0,
-	    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-	    19, 20, 21, 22, 23, 24, 25, 0, 0, 0, 0, 0, 0,
-	    26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
-	    44, 45, 46, 47, 48, 49, 50, 51
+		62, 0, 0, 0, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
+		0, 0, 0, 0, 0, 0, 0,
+		0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+		19, 20, 21, 22, 23, 24, 25, 0, 0, 0, 0, 0, 0,
+		26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
+		44, 45, 46, 47, 48, 49, 50, 51
 	];
 	var base64DecodeMapOffset = 0x2B;
 	var base64EOF = 0x3D;
 	function decodeRestrictedBase64ToBytes(encoded) {
-	    var ch;
-	    var code;
-	    var code2;
-	    var len = encoded.length;
-	    var padding = encoded.charAt(len - 2) === '=' ? 2 : encoded.charAt(len - 1) === '=' ? 1 : 0;
-	    var decoded = new Uint8Array((encoded.length >> 2) * 3 - padding);
-	    for (var i = 0, j = 0; i < encoded.length;) {
-	        ch = encoded.charCodeAt(i++);
-	        code = base64DecodeMap[ch - base64DecodeMapOffset];
-	        ch = encoded.charCodeAt(i++);
-	        code2 = base64DecodeMap[ch - base64DecodeMapOffset];
-	        decoded[j++] = (code << 2) | ((code2 & 0x30) >> 4);
-	        ch = encoded.charCodeAt(i++);
-	        if (ch == base64EOF) {
-	            return decoded;
-	        }
-	        code = base64DecodeMap[ch - base64DecodeMapOffset];
-	        decoded[j++] = ((code2 & 0x0f) << 4) | ((code & 0x3c) >> 2);
-	        ch = encoded.charCodeAt(i++);
-	        if (ch == base64EOF) {
-	            return decoded;
-	        }
-	        code2 = base64DecodeMap[ch - base64DecodeMapOffset];
-	        decoded[j++] = ((code & 0x03) << 6) | code2;
-	    }
-	    return decoded;
+		var ch;
+		var code;
+		var code2;
+		var len = encoded.length;
+		var padding = encoded.charAt(len - 2) === '=' ? 2 : encoded.charAt(len - 1) === '=' ? 1 : 0;
+		var decoded = new Uint8Array((encoded.length >> 2) * 3 - padding);
+		for (var i = 0, j = 0; i < encoded.length;) {
+			ch = encoded.charCodeAt(i++);
+			code = base64DecodeMap[ch - base64DecodeMapOffset];
+			ch = encoded.charCodeAt(i++);
+			code2 = base64DecodeMap[ch - base64DecodeMapOffset];
+			decoded[j++] = (code << 2) | ((code2 & 0x30) >> 4);
+			ch = encoded.charCodeAt(i++);
+			if (ch == base64EOF) {
+				return decoded;
+			}
+			code = base64DecodeMap[ch - base64DecodeMapOffset];
+			decoded[j++] = ((code2 & 0x0f) << 4) | ((code & 0x3c) >> 2);
+			ch = encoded.charCodeAt(i++);
+			if (ch == base64EOF) {
+				return decoded;
+			}
+			code2 = base64DecodeMap[ch - base64DecodeMapOffset];
+			decoded[j++] = ((code & 0x03) << 6) | code2;
+		}
+		return decoded;
 	}
 	const defaultHarnessText = `var wasmModule = new WebAssembly.Module(wasmCode);\n` +
-	    `var wasmInstance = new WebAssembly.Instance(wasmModule, wasmImports);\n` +
-	    `log(wasmInstance.exports.add(1000, 100));\n`;
+		`var wasmInstance = new WebAssembly.Instance(wasmModule, wasmImports);\n` +
+		`log(wasmInstance.exports.add(1000, 100));\n`;
 	class AppComponent extends React.Component {
-	    constructor() {
-	        super();
-	        this.mainEditor = null;
-	        this.viewEditor = null;
-	        this.wasmEditor = null;
-	        this.outputEditor = null;
-	        this.harnessEditor = null;
-	        this.wasmCode = null;
-	        this.wast = "";
-	        this.wastAssembly = {};
-	        this.downloadLink = null;
-	        this.installKeyboardShortcuts();
-	        State_1.State.app = this;
-	        this.state = {
-	            compilerOptions: "-O1 -std=C99",
-	            compilerVersion: 1,
-	            isCompiling: false,
-	            isC: true,
-	            view: "wast",
-	            showCanvas: false,
-	            showSettings: false,
-	            showHelp: false
-	        };
-	    }
-	    installKeyboardShortcuts() {
-	        /*Mousetrap.bind(['ctrl+shift+enter'], (e) => {
-	            this.build();
-	            e.preventDefault();
-	        });
-	        Mousetrap.bind(['ctrl+shift+k'], (e) => {
-	            this.clear();
-	            e.preventDefault();
-	        });
-	        Mousetrap.bind(['ctrl+enter'], (e) => {
-	            this.runHarness();
-	            e.preventDefault();
-	        });*/
-	        Mousetrap.bind(['command+s'], (e) => {
-	            //this.saveFiddleStateToURI();
+		constructor() {
+			super();
+			this.mainEditor = null;
+			this.viewEditor = null;
+			this.wasmEditor = null;
+			this.outputEditor = null;
+			this.harnessEditor = null;
+			this.wasmCode = null;
+			this.wast = "";
+			this.wastAssembly = {};
+			this.downloadLink = null;
+			this.installKeyboardShortcuts();
+			State_1.State.app = this;
+			this.state = {
+				compilerOptions: "-O1 -std=C99",
+				compilerVersion: 1,
+				isCompiling: false,
+				isC: true,
+				view: "wast",
+				showCanvas: false,
+				showSettings: false,
+				showHelp: false
+			};
+		}
+		installKeyboardShortcuts() {
+			/*Mousetrap.bind(['ctrl+shift+enter'], (e) => {
+				this.build();
+				e.preventDefault();
+			});
+			Mousetrap.bind(['ctrl+shift+k'], (e) => {
+				this.clear();
+				e.preventDefault();
+			});
+			Mousetrap.bind(['ctrl+enter'], (e) => {
+				this.runHarness();
+				e.preventDefault();
+			});*/
+			Mousetrap.bind(['command+s'], (e) => {
+				//this.saveFiddleStateToURI();
 			AnonyCo_saveFunc();
-	            e.preventDefault();
-	        });
-	    }
-	    componentDidMount() {
-	        this.init();
-	    }
-	    compilerOptionsChanged(options, compilerVersion) {
-	        let isC = options.indexOf("C++") < 0;
-	        this.setState({ compilerOptions: options, compilerVersion: compilerVersion, isC: !!isC });
-	    }
-	    onResize() {
-	        // State.resize();
-	        this.mainEditor.editor.resize();
-	    }
-	    download(what) {
-	        var url = "";
-	        var name = "";
-	        if (what == "wasm") {
-	            url = URL.createObjectURL(new Blob([this.wasmCode], { type: 'application/wasm' }));
-	            name = "program.wasm";
-	        }
-	        else if (what == "wast") {
-	            url = URL.createObjectURL(new Blob([this.viewEditor.editor.getValue()], { type: 'text/wast' }));
-	            name = "program.wast";
-	        }
-	        else {
-	            return;
-	        }
-	        State_1.State.sendAppEvent("download", what);
-	        this.downloadLink.href = url;
-	        this.downloadLink.download = name;
-	        if (this.downloadLink.href != document.location) {
-	            this.downloadLink.click();
-	        }
-	    }
-	    assemble() {
-	    }
-	    loadFiddledStateFromURI(fiddleURI) {
-	        State_1.State.fiddleURI = fiddleURI;
-	        var xhr = new XMLHttpRequest();
-	        let self = this;
-	        xhr.addEventListener("load", function () {
-	            self.loadFiddledState(JSON.parse(this.response));
-	            history.replaceState({}, fiddleURI, '?' + State_1.State.fiddleURI);
-	        });
-	        let url = "https://api.myjson.com/bins/" + fiddleURI;
-	        xhr.open("GET", url, true);
-	        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
-	        xhr.send();
-	    }
-	    saveFiddleStateToURI() {
-	        var xhr = new XMLHttpRequest();
-	        xhr.addEventListener("load", function () {
-	            let uri = JSON.parse(this.response).uri;
-	            uri = uri.substring(uri.lastIndexOf("/") + 1);
-	            State_1.State.fiddleURI = uri;
-	            State_1.State.app.forceUpdate();
-	            history.replaceState({}, State_1.State.fiddleURI, '?' + State_1.State.fiddleURI);
-	        });
-	        xhr.open("POST", "//api.myjson.com/bins", true);
-	        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
-	        xhr.send(JSON.stringify(this.saveFiddleState()));
-	    }
-	    init() {
+				e.preventDefault();
+			});
+		}
+		componentDidMount() {
+			this.init();
+		}
+		compilerOptionsChanged(options, compilerVersion) {
+			let isC = options.indexOf("C++") < 0;
+			this.setState({ compilerOptions: options, compilerVersion: compilerVersion, isC: !!isC });
+		}
+		onResize() {
+			// State.resize();
+			this.mainEditor.editor.resize();
+		}
+		download(what) {
+			var url = "";
+			var name = "";
+			if (what == "wasm") {
+				url = URL.createObjectURL(new Blob([this.wasmCode], { type: 'application/wasm' }));
+				name = "program.wasm";
+			}
+			else if (what == "wast") {
+				url = URL.createObjectURL(new Blob([this.viewEditor.editor.getValue()], { type: 'text/wast' }));
+				name = "program.wast";
+			}
+			else {
+				return;
+			}
+			State_1.State.sendAppEvent("download", what);
+			this.downloadLink.href = url;
+			this.downloadLink.download = name;
+			if (this.downloadLink.href != document.location) {
+				this.downloadLink.click();
+			}
+		}
+		assemble() {
+		}
+		loadFiddledStateFromURI(fiddleURI) {
+			State_1.State.fiddleURI = fiddleURI;
+			var xhr = new XMLHttpRequest();
+			let self = this;
+			xhr.addEventListener("load", function () {
+				self.loadFiddledState(JSON.parse(this.response));
+				history.replaceState({}, fiddleURI, '?' + State_1.State.fiddleURI);
+			});
+			let url = "https://api.myjson.com/bins/" + fiddleURI;
+			xhr.open("GET", url, true);
+			xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+			xhr.send();
+		}
+		saveFiddleStateToURI() {
+			var xhr = new XMLHttpRequest();
+			xhr.addEventListener("load", function () {
+				let uri = JSON.parse(this.response).uri;
+				uri = uri.substring(uri.lastIndexOf("/") + 1);
+				State_1.State.fiddleURI = uri;
+				State_1.State.app.forceUpdate();
+				history.replaceState({}, State_1.State.fiddleURI, '?' + State_1.State.fiddleURI);
+			});
+			xhr.open("POST", "//api.myjson.com/bins", true);
+			xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+			xhr.send(JSON.stringify(this.saveFiddleState()));
+		}
+		init() {
 		hookersToBeDone = this;
-	        let uri = window.location.search.substring(1);
-	        if (uri) {
-	            let i = uri.indexOf("/");
-	            if (i > 0) {
-	                uri = uri.substring(0, i);
-	            }
-	            this.loadFiddledStateFromURI(uri);
-	            this.forceUpdate();
-	        }
-	        else {
+			let uri = window.location.search.substring(1);
+			if (uri) {
+				let i = uri.indexOf("/");
+				if (i > 0) {
+					uri = uri.substring(0, i);
+				}
+				this.loadFiddledStateFromURI(uri);
+				this.forceUpdate();
+			}
+			else {
 			// #begin AnonyCo
 			loadedresumeSTATE = loadedresumeSTATE || {};
 			loadedresumeSTATE.editors = loadedresumeSTATE.editors || {};
@@ -371,42 +371,42 @@ cppexport int add(int x, int y) {
 			loadedresumeSTATE.editors.harness = loadedresumeSTATE.editors.harness || defaultHarnessText;
 			this.state.compilerOptions = loadedresumeSTATE.compilerOptions || this.state.compilerOptions;
 			// #end AnonyCo
-	            this.loadFiddledState(loadedresumeSTATE);
-	        }
-	    }
-	    saveFiddleState() {
-	        return {
-	            editors: {
-	                main: this.mainEditor.editor.getValue(),
-	                harness: this.harnessEditor.editor.getValue()
-	            },
-	            compilerOptions: this.state.compilerOptions,
-	            compilerVersion: this.state.compilerVersion
-	        };
-	    }
-	    loadFiddledState(fiddleState) {
-	        // For backwards compatibility.
-	        if (fiddleState.editors["main.c"]) {
-	            fiddleState.editors.main = fiddleState.editors["main.c"];
-	        }
-	        if (fiddleState.editors["harness.js"]) {
-	            fiddleState.editors.harness = fiddleState.editors["harness.js"];
-	        }
-	        this.mainEditor.editor.setValue(fiddleState.editors.main, -1);
-	        this.harnessEditor.editor.setValue(fiddleState.editors.harness, -1);
-	        if (fiddleState.compilerOptions) {
-	            let isC = fiddleState.compilerOptions.indexOf("C++") < 0;
-	            this.setState({
-	                compilerOptions: fiddleState.compilerOptions,
-	                compilerVersion: fiddleState.compilerVersion,
-	                isC: !!isC
-	            });
-	        }
-	    }
-	    build() {
-	        var self = this;
-	        var main = this.mainEditor;
-	        var options = this.state.compilerOptions;
+				this.loadFiddledState(loadedresumeSTATE);
+			}
+		}
+		saveFiddleState() {
+			return {
+				editors: {
+					main: this.mainEditor.editor.getValue(),
+					harness: this.harnessEditor.editor.getValue()
+				},
+				compilerOptions: this.state.compilerOptions,
+				compilerVersion: this.state.compilerVersion
+			};
+		}
+		loadFiddledState(fiddleState) {
+			// For backwards compatibility.
+			if (fiddleState.editors["main.c"]) {
+				fiddleState.editors.main = fiddleState.editors["main.c"];
+			}
+			if (fiddleState.editors["harness.js"]) {
+				fiddleState.editors.harness = fiddleState.editors["harness.js"];
+			}
+			this.mainEditor.editor.setValue(fiddleState.editors.main, -1);
+			this.harnessEditor.editor.setValue(fiddleState.editors.harness, -1);
+			if (fiddleState.compilerOptions) {
+				let isC = fiddleState.compilerOptions.indexOf("C++") < 0;
+				this.setState({
+					compilerOptions: fiddleState.compilerOptions,
+					compilerVersion: fiddleState.compilerVersion,
+					isC: !!isC
+				});
+			}
+		}
+		build() {
+			var self = this;
+			var main = this.mainEditor;
+			var options = this.state.compilerOptions;
 		var AnonyCo_current_code = main.editor.getValue();
 		var when_done_func = (result, wast, annotations) => {
 			AnonyCo_previous_result = result;
@@ -428,388 +428,388 @@ cppexport int add(int x, int y) {
 			AnonyCo_previous_code = AnonyCo_current_code;
 			this.compileToWasm(AnonyCo_current_code, options, when_done_func);
 		}
-	    }
-	    disassemble(json) {
-	        let self = this;
-	        if (typeof capstone === "undefined") {
-	            lazyLoad("lib/capstone.x86.min.js", go);
-	        }
-	        else {
-	            go();
-	        }
-	        function toBytes(a) {
-	            return a.map(function (x) { return padLeft(Number(x).toString(16), 2, "0"); }).join(" ");
-	        }
-	        function go() {
-	            let s = "";
-	            var cs = new capstone.Cs(capstone.ARCH_X86, capstone.MODE_64);
-	            var annotations = [];
-	            var assemblyInstructionsByAddress = Object.create(null);
-	            for (var i = 0; i < json.regions.length; i++) {
-	                var region = json.regions[i];
-	                s += region.name + ":\n";
-	                var csBuffer = decodeRestrictedBase64ToBytes(region.bytes);
-	                var instructions = cs.disasm(csBuffer, region.entry);
-	                var basicBlocks = {};
-	                instructions.forEach(function (instr, i) {
-	                    assemblyInstructionsByAddress[instr.address] = instr;
-	                    if (isBranch(instr)) {
-	                        var targetAddress = parseInt(instr.op_str);
-	                        if (!basicBlocks[targetAddress]) {
-	                            basicBlocks[targetAddress] = [];
-	                        }
-	                        basicBlocks[targetAddress].push(instr.address);
-	                        if (i + 1 < instructions.length) {
-	                            basicBlocks[instructions[i + 1].address] = [];
-	                        }
-	                    }
-	                });
-	                instructions.forEach(function (instr) {
-	                    if (basicBlocks[instr.address]) {
-	                        s += " " + padRight(toAddress(instr.address) + ":", 39, " ");
-	                        if (basicBlocks[instr.address].length > 0) {
-	                            s += "; " + toAddress(instr.address) + " from: [" + basicBlocks[instr.address].map(toAddress).join(", ") + "]";
-	                        }
-	                        s += "\n";
-	                    }
-	                    s += "  " + padRight(instr.mnemonic + " " + instr.op_str, 38, " ");
-	                    s += "; " + toAddress(instr.address) + " " + toBytes(instr.bytes) + "\n";
-	                });
-	                s += "\n";
-	            }
-	            self.viewEditor.editor.getSession().setValue(s, 1);
-	            self.viewEditor.editor.getSession().setMode("ace/mode/assembly_x86");
-	        }
-	    }
-	    runHarness() {
-	        State_1.State.sendAppEvent("run", "Harness");
-	        if (!this.wasmCode) {
-	            this.appendOutput("Build a WebAssembly module first.");
-	            return;
-	        }
-	        // |buffer| is needed for backward compatibility
-	        let self = this;
-	        let func = new iframesandbox_1.IFrameSandbox("wasmCode", "buffer", "wasmImports", "lib", "log", "canvas", this.harnessEditor.editor.getValue());
-	        if (self.func)
-	            self.func.destroy();
-	        self.func = func;
-	        lib_1.lib.log = function (x) {
-	            self.appendOutput(String(x));
-	        };
-	        lib_1.lib.showCanvas = function (x = true) {
-	            self.setState({ showCanvas: x });
-	        };
-	        lib_1.lib.currentInstance = null;
-	        lib_1.lib.syscall = syscall_1.syscall;
-	        func.onerror = (x) => {
-	            self.appendOutput(x);
-	            State_1.State.sendAppEvent("error", "Run Harness");
-	        };
-	        func.call(this.wasmCode, this.wasmCode, this.createWasmImports(false), lib_1.lib, lib_1.lib.log, State_1.State.app.canvas);
-	    }
-	    createWasmImports(string) {
-	        let wasmImports = {};
-	        if (!this.wasmCode || !WebAssembly.Module.imports) {
-	            return wasmImports;
-	        }
-	        WebAssembly.Module.imports(new WebAssembly.Module(this.wasmCode)).forEach((i) => {
-	            if (!wasmImports[i.module]) {
-	                wasmImports[i.module] = {};
-	            }
-	            if (/^__syscall\d+$/.test(i.name) && i.kind === "function") {
-	                let num = +i.name.substring("__syscall".length);
-	                if (string) {
-	                    let args = [];
-	                    for (let j = 0; j < num; j++)
-	                        args.push(', ', String.fromCharCode(97 + j));
-	                    wasmImports[i.module][i.name] =
-	                        `    // ${name}\n` +
-	                            `    ${i.name}: function ${i.name} (n${args.join('')}) {\n` +
-	                            `      return lib.syscall(wasmInstance, n${args.join('')});\n` +
-	                            `    }`;
-	                }
-	                else {
-	                    wasmImports[i.module][i.name] = function () {
-	                        if (!lib_1.lib.currentInstance) {
-	                            throw new Error(`${i.name}: lib.currentInstance must be specified`);
-	                        }
-	                        return lib_1.lib.syscall(lib_1.lib.currentInstance, ...arguments);
-	                    };
-	                }
-	                return;
-	            }
-	            if (i.kind === "function") {
-	                let name = demangle("_" + i.name);
-	                if (string) {
-	                    wasmImports[i.module][i.name] =
-	                        `    // ${name}\n` +
-	                            `    ${i.name}: function ${i.name} () {\n` +
-	                            `      // ...\n` +
-	                            `    }`;
-	                }
-	                else {
-	                    wasmImports[i.module][i.name] = function () {
-	                        lib_1.lib.log(`NYI: ${i.name} ${name}`);
-	                    };
-	                }
-	            }
-	        });
-	        if (string) {
-	            let keys = Object.keys(wasmImports);
-	            let str = "var wasmImports = {\n";
-	            str += keys.map(key => {
-	                let fun = Object.keys(wasmImports[key]).map(name => {
-	                    return wasmImports[key][name];
-	                }).join(",\n");
-	                return "  " + key + ": {\n" + fun + "\n  }";
-	            }).join(",");
-	            str += "\n};";
-	            return str;
-	        }
-	        return wasmImports;
-	    }
-	    compileToWasm(src, options, cb) {
-	        State_1.State.sendAppEvent("compile", "To Wasm");
-	        let self = this;
-	        src = encodeURIComponent(src).replace('%20', '+');
-	        let action = this.state.isC ? "c2wast" : "cpp2wast";
-	        let compilerVersion = this.state.compilerVersion;
-	        options = encodeURIComponent(options);
-	        self.setState({ isCompiling: true });
-	        State_1.State.sendRequest("input=" + src + "&action=" + action + "&version=" + compilerVersion + "&options=" + options, function () {
-	            self.setState({ isCompiling: false });
-	            if (!this.responseText) {
-	                this.appendOutput("Something went wrong while compiling " + action + ".");
-	                State_1.State.sendAppEvent("error", "Compile to Wasm");
-	                return;
-	            }
-	            let annotations = State_1.State.getAnnotations(this.responseText);
-	            if (annotations.length) {
-	                cb(this.responseText, null, annotations);
-	                State_1.State.sendAppEvent("error", "Compile to Wasm (Error or Warnings)");
-	                return;
-	            }
-	            self.wast = this.responseText;
-	            let wast = encodeURIComponent(this.responseText).replace('%20', '+');
-	            self.setState({ isCompiling: true });
-	            State_1.State.sendRequest("input=" + wast + "&action=" + "wast2wasm" + "&options=" + options, function () {
-	                self.setState({ isCompiling: false });
-	                var buffer = atob(this.responseText.split('\n', 2)[1]);
-	                var data = new Uint8Array(buffer.length);
-	                for (var i = 0; i < buffer.length; i++) {
-	                    data[i] = buffer.charCodeAt(i);
-	                }
-	                cb(data, self.wast, []);
-	            });
-	        });
-	    }
-	    appendOutput(s) {
-	        this.outputEditor.editor.insert(s + "\n");
-	        this.outputEditor.editor.gotoLine(Infinity);
-	    }
+		}
+		disassemble(json) {
+			let self = this;
+			if (typeof capstone === "undefined") {
+				lazyLoad("lib/capstone.x86.min.js", go);
+			}
+			else {
+				go();
+			}
+			function toBytes(a) {
+				return a.map(function (x) { return padLeft(Number(x).toString(16), 2, "0"); }).join(" ");
+			}
+			function go() {
+				let s = "";
+				var cs = new capstone.Cs(capstone.ARCH_X86, capstone.MODE_64);
+				var annotations = [];
+				var assemblyInstructionsByAddress = Object.create(null);
+				for (var i = 0; i < json.regions.length; i++) {
+					var region = json.regions[i];
+					s += region.name + ":\n";
+					var csBuffer = decodeRestrictedBase64ToBytes(region.bytes);
+					var instructions = cs.disasm(csBuffer, region.entry);
+					var basicBlocks = {};
+					instructions.forEach(function (instr, i) {
+						assemblyInstructionsByAddress[instr.address] = instr;
+						if (isBranch(instr)) {
+							var targetAddress = parseInt(instr.op_str);
+							if (!basicBlocks[targetAddress]) {
+								basicBlocks[targetAddress] = [];
+							}
+							basicBlocks[targetAddress].push(instr.address);
+							if (i + 1 < instructions.length) {
+								basicBlocks[instructions[i + 1].address] = [];
+							}
+						}
+					});
+					instructions.forEach(function (instr) {
+						if (basicBlocks[instr.address]) {
+							s += " " + padRight(toAddress(instr.address) + ":", 39, " ");
+							if (basicBlocks[instr.address].length > 0) {
+								s += "; " + toAddress(instr.address) + " from: [" + basicBlocks[instr.address].map(toAddress).join(", ") + "]";
+							}
+							s += "\n";
+						}
+						s += "  " + padRight(instr.mnemonic + " " + instr.op_str, 38, " ");
+						s += "; " + toAddress(instr.address) + " " + toBytes(instr.bytes) + "\n";
+					});
+					s += "\n";
+				}
+				self.viewEditor.editor.getSession().setValue(s, 1);
+				self.viewEditor.editor.getSession().setMode("ace/mode/assembly_x86");
+			}
+		}
+		runHarness() {
+			State_1.State.sendAppEvent("run", "Harness");
+			if (!this.wasmCode) {
+				this.appendOutput("Build a WebAssembly module first.");
+				return;
+			}
+			// |buffer| is needed for backward compatibility
+			let self = this;
+			let func = new iframesandbox_1.IFrameSandbox("wasmCode", "buffer", "wasmImports", "lib", "log", "canvas", this.harnessEditor.editor.getValue());
+			if (self.func)
+				self.func.destroy();
+			self.func = func;
+			lib_1.lib.log = function (x) {
+				self.appendOutput(String(x));
+			};
+			lib_1.lib.showCanvas = function (x = true) {
+				self.setState({ showCanvas: x });
+			};
+			lib_1.lib.currentInstance = null;
+			lib_1.lib.syscall = syscall_1.syscall;
+			func.onerror = (x) => {
+				self.appendOutput(x);
+				State_1.State.sendAppEvent("error", "Run Harness");
+			};
+			func.call(this.wasmCode, this.wasmCode, this.createWasmImports(false), lib_1.lib, lib_1.lib.log, State_1.State.app.canvas);
+		}
+		createWasmImports(string) {
+			let wasmImports = {};
+			if (!this.wasmCode || !WebAssembly.Module.imports) {
+				return wasmImports;
+			}
+			WebAssembly.Module.imports(new WebAssembly.Module(this.wasmCode)).forEach((i) => {
+				if (!wasmImports[i.module]) {
+					wasmImports[i.module] = {};
+				}
+				if (/^__syscall\d+$/.test(i.name) && i.kind === "function") {
+					let num = +i.name.substring("__syscall".length);
+					if (string) {
+						let args = [];
+						for (let j = 0; j < num; j++)
+							args.push(', ', String.fromCharCode(97 + j));
+						wasmImports[i.module][i.name] =
+							`	// ${name}\n` +
+								`	${i.name}: function ${i.name} (n${args.join('')}) {\n` +
+								`	  return lib.syscall(wasmInstance, n${args.join('')});\n` +
+								`	}`;
+					}
+					else {
+						wasmImports[i.module][i.name] = function () {
+							if (!lib_1.lib.currentInstance) {
+								throw new Error(`${i.name}: lib.currentInstance must be specified`);
+							}
+							return lib_1.lib.syscall(lib_1.lib.currentInstance, ...arguments);
+						};
+					}
+					return;
+				}
+				if (i.kind === "function") {
+					let name = demangle("_" + i.name);
+					if (string) {
+						wasmImports[i.module][i.name] =
+							`	// ${name}\n` +
+								`	${i.name}: function ${i.name} () {\n` +
+								`	  // ...\n` +
+								`	}`;
+					}
+					else {
+						wasmImports[i.module][i.name] = function () {
+							lib_1.lib.log(`NYI: ${i.name} ${name}`);
+						};
+					}
+				}
+			});
+			if (string) {
+				let keys = Object.keys(wasmImports);
+				let str = "var wasmImports = {\n";
+				str += keys.map(key => {
+					let fun = Object.keys(wasmImports[key]).map(name => {
+						return wasmImports[key][name];
+					}).join(",\n");
+					return "  " + key + ": {\n" + fun + "\n  }";
+				}).join(",");
+				str += "\n};";
+				return str;
+			}
+			return wasmImports;
+		}
+		compileToWasm(src, options, cb) {
+			State_1.State.sendAppEvent("compile", "To Wasm");
+			let self = this;
+			src = encodeURIComponent(src).replace('%20', '+');
+			let action = this.state.isC ? "c2wast" : "cpp2wast";
+			let compilerVersion = this.state.compilerVersion;
+			options = encodeURIComponent(options);
+			self.setState({ isCompiling: true });
+			State_1.State.sendRequest("input=" + src + "&action=" + action + "&version=" + compilerVersion + "&options=" + options, function () {
+				self.setState({ isCompiling: false });
+				if (!this.responseText) {
+					this.appendOutput("Something went wrong while compiling " + action + ".");
+					State_1.State.sendAppEvent("error", "Compile to Wasm");
+					return;
+				}
+				let annotations = State_1.State.getAnnotations(this.responseText);
+				if (annotations.length) {
+					cb(this.responseText, null, annotations);
+					State_1.State.sendAppEvent("error", "Compile to Wasm (Error or Warnings)");
+					return;
+				}
+				self.wast = this.responseText;
+				let wast = encodeURIComponent(this.responseText).replace('%20', '+');
+				self.setState({ isCompiling: true });
+				State_1.State.sendRequest("input=" + wast + "&action=" + "wast2wasm" + "&options=" + options, function () {
+					self.setState({ isCompiling: false });
+					var buffer = atob(this.responseText.split('\n', 2)[1]);
+					var data = new Uint8Array(buffer.length);
+					for (var i = 0; i < buffer.length; i++) {
+						data[i] = buffer.charCodeAt(i);
+					}
+					cb(data, self.wast, []);
+				});
+			});
+		}
+		appendOutput(s) {
+			this.outputEditor.editor.insert(s + "\n");
+			this.outputEditor.editor.gotoLine(Infinity);
+		}
 		AnonyCo_saveFunc(){
 			AnonyCo_saveFunc();
 		}
-	    share() {
-	        this.saveFiddleStateToURI();
-	        State_1.State.sendAppEvent("save", "Fiddle state to URI");
-	    }
-	    toggleCanvas() {
-	        this.setState({ showCanvas: !this.state.showCanvas });
-	    }
-	    toggleSettings() {
-	        this.setState({ showSettings: !this.state.showSettings });
-	    }
-	    toggleHelp() {
-	        this.setState({ showHelp: !this.state.showHelp });
-	    }
-	    clear() {
-	        this.outputEditor.editor.setValue("");
-	    }
-	    onViewChanged(e) {
-	        this.setState({ view: e.target.value });
-	    }
-	    loadFileExplorer() {
+		share() {
+			this.saveFiddleStateToURI();
+			State_1.State.sendAppEvent("save", "Fiddle state to URI");
+		}
+		toggleCanvas() {
+			this.setState({ showCanvas: !this.state.showCanvas });
+		}
+		toggleSettings() {
+			this.setState({ showSettings: !this.state.showSettings });
+		}
+		toggleHelp() {
+			this.setState({ showHelp: !this.state.showHelp });
+		}
+		clear() {
+			this.outputEditor.editor.setValue("");
+		}
+		onViewChanged(e) {
+			this.setState({ view: e.target.value });
+		}
+		loadFileExplorer() {
 		var fileExplorerOverlay = document.getElementsByClassName("fileExplorerOverlay")[0];
 		fileExplorerOverlay.style.display = "";
 		
-	    }
-	    closeFileExplorer() {
+		}
+		closeFileExplorer() {
 		var fileExplorerOverlay = document.getElementsByClassName("fileExplorerOverlay")[0];
 		fileExplorerOverlay.style.display = "none";
 		
-	    }
-	    render() {
-	        if (this.viewEditor) {
-	            if (this.state.view === "wast") {
-	                this.viewEditor.editor.getSession().setMode("ace/mode/text");
-	                this.viewEditor.editor.setValue(this.wast, -1);
-	            }
-	            else if (this.state.view === "wasm") {
-	                this.viewEditor.editor.getSession().setMode("ace/mode/javascript");
-	                this.viewEditor.editor.setValue("var wasmCode = new Uint8Array([" + String(this.wasmCode) + "]);", -1);
-	            }
-	            else if (this.state.view == "imports") {
-	                this.viewEditor.editor.getSession().setMode("ace/mode/javascript");
-	                this.viewEditor.editor.setValue(this.createWasmImports(true), -1);
-	            }
-	            else if (this.state.view.indexOf("x86") == 0) {
-	                this.viewEditor.editor.setValue("");
-	                if (this.wast) {
-	                    let type = this.state.view;
-	                    let self = this;
-	                    let options = type == "x86-baseline" ? "--wasm-always-baseline" : "";
-	                    if (this.wastAssembly[type]) {
-	                        self.disassemble(self.wastAssembly[type]);
-	                    }
-	                    else {
-	                        let wast = encodeURIComponent(this.wast).replace('%20', '+');
-	                        State_1.State.sendRequest("input=" + wast + "&action=wast2assembly&options=" + options, function () {
-	                            self.wastAssembly[type] = JSON.parse(this.responseText);
-	                            self.disassemble(self.wastAssembly[type]);
-	                        });
-	                    }
-	                }
-	            }
-	        }
-	        return React.createElement("div", { className: "gAppContainer" },
-	            React.createElement("a", { style: { display: "none" }, ref: (self) => this.downloadLink = self }),
-	            React.createElement("div", { className: "gHeader" },
-	                React.createElement("div", null,
-	                    React.createElement("div", { className: "canvasOverlay", style: { display: this.state.showCanvas ? "" : "none" } },
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("span", { className: "editorHeaderTitle" }, "Canvas"),
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { title: "Toggle Canvas", onClick: this.toggleCanvas.bind(this) },
-	                                    "Hide ",
-	                                    React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement("canvas", { className: "outputCanvas", ref: (self) => this.canvas = self, width: 1200, height: 1200 })),
-	                    React.createElement("div", { className: "settingsOverlay", style: { display: this.state.showSettings ? "" : "none" } },
-	                        React.createElement("span", { className: "editorHeaderTitle" }, "Settings"),
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { title: "Toggle Settings", onClick: this.toggleSettings.bind(this) },
-	                                    "Hide ",
-	                                    React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "Compiler Options"),
-	                        React.createElement("div", { className: "settingSection" },
-	                            React.createElement(CompilerOptions_1.CompilerOptionsComponent, { options: this.state.compilerOptions, compilerVersion: this.state.compilerVersion, onChange: this.compilerOptionsChanged.bind(this) }),
-	                            ' ')),
-	                    React.createElement("div", { className: "fileExplorerOverlay", style: { display: this.state.showFileExplorer ? "" : "none" } },
-	                        React.createElement("span", { className: "editorHeaderTitle" }, "File Explorer"),
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { title: "Toggle File Explorer", onClick: this.closeFileExplorer.bind(this) },
-	                                    "Hide ",
-	                                    React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement("table", { className: "fileexplorer" },
+		}
+		render() {
+			if (this.viewEditor) {
+				if (this.state.view === "wast") {
+					this.viewEditor.editor.getSession().setMode("ace/mode/text");
+					this.viewEditor.editor.setValue(this.wast, -1);
+				}
+				else if (this.state.view === "wasm") {
+					this.viewEditor.editor.getSession().setMode("ace/mode/javascript");
+					this.viewEditor.editor.setValue("var wasmCode = new Uint8Array([" + String(this.wasmCode) + "]);", -1);
+				}
+				else if (this.state.view == "imports") {
+					this.viewEditor.editor.getSession().setMode("ace/mode/javascript");
+					this.viewEditor.editor.setValue(this.createWasmImports(true), -1);
+				}
+				else if (this.state.view.indexOf("x86") == 0) {
+					this.viewEditor.editor.setValue("");
+					if (this.wast) {
+						let type = this.state.view;
+						let self = this;
+						let options = type == "x86-baseline" ? "--wasm-always-baseline" : "";
+						if (this.wastAssembly[type]) {
+							self.disassemble(self.wastAssembly[type]);
+						}
+						else {
+							let wast = encodeURIComponent(this.wast).replace('%20', '+');
+							State_1.State.sendRequest("input=" + wast + "&action=wast2assembly&options=" + options, function () {
+								self.wastAssembly[type] = JSON.parse(this.responseText);
+								self.disassemble(self.wastAssembly[type]);
+							});
+						}
+					}
+				}
+			}
+			return React.createElement("div", { className: "gAppContainer" },
+				React.createElement("a", { style: { display: "none" }, ref: (self) => this.downloadLink = self }),
+				React.createElement("div", { className: "gHeader" },
+					React.createElement("div", null,
+						React.createElement("div", { className: "canvasOverlay", style: { display: this.state.showCanvas ? "" : "none" } },
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("span", { className: "editorHeaderTitle" }, "Canvas"),
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { title: "Toggle Canvas", onClick: this.toggleCanvas.bind(this) },
+										"Hide ",
+										React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
+							React.createElement("canvas", { className: "outputCanvas", ref: (self) => this.canvas = self, width: 1200, height: 1200 })),
+						React.createElement("div", { className: "settingsOverlay", style: { display: this.state.showSettings ? "" : "none" } },
+							React.createElement("span", { className: "editorHeaderTitle" }, "Settings"),
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { title: "Toggle Settings", onClick: this.toggleSettings.bind(this) },
+										"Hide ",
+										React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
+							React.createElement("div", { className: "settingSectionHeader" }, "Compiler Options"),
+							React.createElement("div", { className: "settingSection" },
+								React.createElement(CompilerOptions_1.CompilerOptionsComponent, { options: this.state.compilerOptions, compilerVersion: this.state.compilerVersion, onChange: this.compilerOptionsChanged.bind(this) }),
+								' ')),
+						React.createElement("div", { className: "fileExplorerOverlay", style: { display: this.state.showFileExplorer ? "" : "none" } },
+							React.createElement("span", { className: "editorHeaderTitle" }, "File Explorer"),
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { title: "Toggle File Explorer", onClick: this.closeFileExplorer.bind(this) },
+										"Hide ",
+										React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
+							React.createElement("table", { className: "fileexplorer" },
 					React.createElement("thead", null,
 						React.createElement("th", {style:{width:"5em"}}, "Type"),
 						React.createElement("th", null, "Name"),
 						React.createElement("th", {style:{width:"4em"}}, "Size")
 					),
 				),
-	                    ),
-	                    React.createElement("div", { className: "helpOverlay", style: { display: this.state.showHelp ? "" : "none" } },
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("span", { className: "editorHeaderTitle" }, "Help"),
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { title: "Toggle Settings", onClick: this.toggleHelp.bind(this) },
-	                                    "Hide ",
-	                                    React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement("div", { className: "settingSection" }, "WasmFiddle lets you compile C/C++ code to WebAssembly and run it in the browser. The JavaScript harness on the right has several global variables and helper functions."),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "wasmCode: Uint8Array"),
-	                        React.createElement("div", { className: "settingSection" }, "The compiled WebAssembly buffer."),
-	                        React.createElement("div", { className: "settingSectionHeader" },
-	                            "wasmImports: ",
-	                            "{ ... }"),
-	                        React.createElement("div", { className: "settingSection" }, "This object is automatically generated by WasmFiddle for your convenience. It's a template containing function stubs for each imported WebAssembly function."),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "canvas: HTMLCanvasElement"),
-	                        React.createElement("div", { className: "settingSection" },
-	                            "WasmFiddle creates a 1200x1200 canvas element that you can draw into. You can display the canvas programmatically using ",
-	                            React.createElement("span", { className: "codeSpan" }, "lib.showCanvas()"),
-	                            "."),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "log()"),
-	                        React.createElement("div", { className: "settingSection" },
-	                            "A simple logging function whose output is shown on the bottom right. You may also use the browser's ",
-	                            React.createElement("span", { className: "codeSpan" }, "console"),
-	                            " object but you'll need to open up the developer tools to see the output."),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "lib.UTF8ArrayToString(heap: Uint8Array, ptr: number)"),
-	                        React.createElement("div", { className: "settingSection" }, "Converts a C string into a JavaScript string."),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "lib.dumpMemory(heap: Uint8Array, ptr: number, len: number)"),
-	                        React.createElement("div", { className: "settingSection" }, "Prints memory contents."),
-	                        React.createElement("div", { className: "settingSectionHeader" }, "lib.setStackPtr(heap: Uint8Array, ptr: number)"),
-	                        React.createElement("div", { className: "settingSection" }, "Sets the default stack pointer address.")),
-	                    React.createElement("img", { src: "img/web-assembly-icon-white-64px.png", className: "waIcon", "aria-hidden": "true" })),
-	                React.createElement("div", { className: "gShareURI", "aria-hidden": "true" }, window.location.pathname + '?' + State_1.State.fiddleURI),
-	                React.createElement("div", { className: "gShareButton", "aria-hidden": "true" },
-	                    React.createElement("a", { title: "File Manager", onClick: this.loadFileExplorer.bind(this) },
-	                        React.createElement("i", { className: "fa fa-folder", "aria-hidden": "true" })),
-	                    ' ',
-	                    React.createElement("a", { title: "Build/Compile", onClick: this.build.bind(this) },
-	                        React.createElement("i", { className: "fa fa-cog" + (this.state.isCompiling ? "fa-spin" : "") + " fa-lg", "aria-hidden": "true" })),
-	                    ' ',
-	                    React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Run Code", onClick: this.runHarness.bind(this) },
-	                        React.createElement("i", { className: "fa fa-play-circle fa-lg", "aria-hidden": "true" })),
-	                    ' ',
-	                    React.createElement("a", { title: "Toggle Settings", onClick: this.toggleSettings.bind(this) },
-	                        React.createElement("i", { className: "fa fa-wrench fa-lg", "aria-hidden": "true" })),
-	                    ' ',
-	                    React.createElement("a", { title: "Toggle Help", onClick: this.toggleHelp.bind(this) },
-	                        React.createElement("i", { className: "fa fa-book fa-lg", "aria-hidden": "true" })),
-	                    ' ',
-	                    React.createElement("i", { title: "Share", onClick: this.share.bind(this), className: "fa fa-cloud-upload fa-lg", "aria-hidden": "true" }))),
-	            React.createElement("div", null,
-	                React.createElement("div", { className: "gV2" },
-	                    React.createElement("div", null,
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("span", { className: "editorHeaderTitle" }, this.state.isC ? "C" : "C++"),
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { title: "Build: CTRL + Shift + Return", onClick: this.build.bind(this) },
-	                                    "Build ",
-	                                    React.createElement("i", { className: "fa fa-cog " + (this.state.isCompiling ? "fa-spin" : "") + " fa-lg", "aria-hidden": "true" })),
-	                                ' ',
-	                                React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Run: CTRL + Return", onClick: this.runHarness.bind(this) },
-	                                    "Run ",
-	                                    React.createElement("i", { className: "fa fa-play-circle fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement(Editor_1.EditorComponent, { ref: (self) => this.mainEditor = self, name: "main", mode: "ace/mode/c_cpp", showGutter: true, showLineNumbers: true })),
-	                    React.createElement("div", null,
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("span", { className: "editorHeaderTitle" }, "JS"),
-	                            React.createElement("div", { className: "editorHeaderButtons" })),
-	                        React.createElement(Editor_1.EditorComponent, { ref: (self) => this.harnessEditor = self, name: "harness", mode: "ace/mode/javascript", showGutter: true, showLineNumbers: true })))),
-	            React.createElement("div", null,
-	                React.createElement("div", { className: "gV2" },
-	                    React.createElement("div", null,
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("select", { title: "Optimization Level", value: this.state.view, onChange: this.onViewChanged.bind(this) },
-	                                React.createElement("option", { value: "wast" }, "Text Format"),
-	                                React.createElement("option", { value: "wasm" }, "Code Buffer"),
-	                                React.createElement("option", { value: "imports" }, "Imports Template"),
-	                                React.createElement("option", { value: "x86" }, "Firefox x86"),
-	                                React.createElement("option", { value: "x86-baseline" }, "Firefox x86 Baseline")),
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Download WebAssembly Text", onClick: this.download.bind(this, "wast") },
-	                                    "Wast ",
-	                                    React.createElement("i", { className: "fa fa-download fa-lg", "aria-hidden": "true" })),
-	                                ' ',
-	                                React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Download WebAssembly Binary", onClick: this.download.bind(this, "wasm") },
-	                                    "Wasm ",
-	                                    React.createElement("i", { className: "fa fa-download fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement(Editor_1.EditorComponent, { ref: (self) => this.viewEditor = self, name: "view", save: false, readOnly: true, fontSize: 10 })),
-	                    React.createElement("div", null,
-	                        React.createElement("div", { className: "editorHeader" },
-	                            React.createElement("span", { className: "editorHeaderTitle" }, "Output"),
-	                            React.createElement("div", { className: "editorHeaderButtons" },
-	                                React.createElement("a", { title: "Toggle Canvas", onClick: this.toggleCanvas.bind(this) },
-	                                    "Canvas ",
-	                                    React.createElement("i", { className: "fa fa-picture-o fa-lg", "aria-hidden": "true" })),
-	                                ' ',
-	                                React.createElement("a", { title: "Clear Output: CTRL + Shift + K", onClick: this.clear.bind(this) },
-	                                    "Clear ",
-	                                    React.createElement("i", { className: "fa fa-close fa-lg", "aria-hidden": "true" })))),
-	                        React.createElement(Editor_1.EditorComponent, { ref: (self) => this.outputEditor = self, name: "output", save: false, readOnly: true, fontSize: 10 })))));
-	    }
+						),
+						React.createElement("div", { className: "helpOverlay", style: { display: this.state.showHelp ? "" : "none" } },
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("span", { className: "editorHeaderTitle" }, "Help"),
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { title: "Toggle Settings", onClick: this.toggleHelp.bind(this) },
+										"Hide ",
+										React.createElement("i", { className: "fa fa-window-close fa-lg", "aria-hidden": "true" })))),
+							React.createElement("div", { className: "settingSection" }, "WasmFiddle lets you compile C/C++ code to WebAssembly and run it in the browser. The JavaScript harness on the right has several global variables and helper functions."),
+							React.createElement("div", { className: "settingSectionHeader" }, "wasmCode: Uint8Array"),
+							React.createElement("div", { className: "settingSection" }, "The compiled WebAssembly buffer."),
+							React.createElement("div", { className: "settingSectionHeader" },
+								"wasmImports: ",
+								"{ ... }"),
+							React.createElement("div", { className: "settingSection" }, "This object is automatically generated by WasmFiddle for your convenience. It's a template containing function stubs for each imported WebAssembly function."),
+							React.createElement("div", { className: "settingSectionHeader" }, "canvas: HTMLCanvasElement"),
+							React.createElement("div", { className: "settingSection" },
+								"WasmFiddle creates a 1200x1200 canvas element that you can draw into. You can display the canvas programmatically using ",
+								React.createElement("span", { className: "codeSpan" }, "lib.showCanvas()"),
+								"."),
+							React.createElement("div", { className: "settingSectionHeader" }, "log()"),
+							React.createElement("div", { className: "settingSection" },
+								"A simple logging function whose output is shown on the bottom right. You may also use the browser's ",
+								React.createElement("span", { className: "codeSpan" }, "console"),
+								" object but you'll need to open up the developer tools to see the output."),
+							React.createElement("div", { className: "settingSectionHeader" }, "lib.UTF8ArrayToString(heap: Uint8Array, ptr: number)"),
+							React.createElement("div", { className: "settingSection" }, "Converts a C string into a JavaScript string."),
+							React.createElement("div", { className: "settingSectionHeader" }, "lib.dumpMemory(heap: Uint8Array, ptr: number, len: number)"),
+							React.createElement("div", { className: "settingSection" }, "Prints memory contents."),
+							React.createElement("div", { className: "settingSectionHeader" }, "lib.setStackPtr(heap: Uint8Array, ptr: number)"),
+							React.createElement("div", { className: "settingSection" }, "Sets the default stack pointer address.")),
+						React.createElement("img", { src: "img/web-assembly-icon-white-64px.png", className: "waIcon", "aria-hidden": "true" })),
+					React.createElement("div", { className: "gShareURI", "aria-hidden": "true" }, window.location.pathname + '?' + State_1.State.fiddleURI),
+					React.createElement("div", { className: "gShareButton", "aria-hidden": "true" },
+						React.createElement("a", { title: "File Manager", onClick: this.loadFileExplorer.bind(this) },
+							React.createElement("i", { className: "fa fa-folder", "aria-hidden": "true" })),
+						' ',
+						React.createElement("a", { title: "Build/Compile", onClick: this.build.bind(this) },
+							React.createElement("i", { className: "fa fa-cog" + (this.state.isCompiling ? "fa-spin" : "") + " fa-lg", "aria-hidden": "true" })),
+						' ',
+						React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Run Code", onClick: this.runHarness.bind(this) },
+							React.createElement("i", { className: "fa fa-play-circle fa-lg", "aria-hidden": "true" })),
+						' ',
+						React.createElement("a", { title: "Toggle Settings", onClick: this.toggleSettings.bind(this) },
+							React.createElement("i", { className: "fa fa-wrench fa-lg", "aria-hidden": "true" })),
+						' ',
+						React.createElement("a", { title: "Toggle Help", onClick: this.toggleHelp.bind(this) },
+							React.createElement("i", { className: "fa fa-book fa-lg", "aria-hidden": "true" })),
+						' ',
+						React.createElement("i", { title: "Share", onClick: this.share.bind(this), className: "fa fa-cloud-upload fa-lg", "aria-hidden": "true" }))),
+				React.createElement("div", null,
+					React.createElement("div", { className: "gV2" },
+						React.createElement("div", null,
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("span", { className: "editorHeaderTitle" }, this.state.isC ? "C" : "C++"),
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { title: "Build: CTRL + Shift + Return", onClick: this.build.bind(this) },
+										"Build ",
+										React.createElement("i", { className: "fa fa-cog " + (this.state.isCompiling ? "fa-spin" : "") + " fa-lg", "aria-hidden": "true" })),
+									' ',
+									React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Run: CTRL + Return", onClick: this.runHarness.bind(this) },
+										"Run ",
+										React.createElement("i", { className: "fa fa-play-circle fa-lg", "aria-hidden": "true" })))),
+							React.createElement(Editor_1.EditorComponent, { ref: (self) => this.mainEditor = self, name: "main", mode: "ace/mode/c_cpp", showGutter: true, showLineNumbers: true })),
+						React.createElement("div", null,
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("span", { className: "editorHeaderTitle" }, "JS"),
+								React.createElement("div", { className: "editorHeaderButtons" })),
+							React.createElement(Editor_1.EditorComponent, { ref: (self) => this.harnessEditor = self, name: "harness", mode: "ace/mode/javascript", showGutter: true, showLineNumbers: true })))),
+				React.createElement("div", null,
+					React.createElement("div", { className: "gV2" },
+						React.createElement("div", null,
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("select", { title: "Optimization Level", value: this.state.view, onChange: this.onViewChanged.bind(this) },
+									React.createElement("option", { value: "wast" }, "Text Format"),
+									React.createElement("option", { value: "wasm" }, "Code Buffer"),
+									React.createElement("option", { value: "imports" }, "Imports Template"),
+									React.createElement("option", { value: "x86" }, "Firefox x86"),
+									React.createElement("option", { value: "x86-baseline" }, "Firefox x86 Baseline")),
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Download WebAssembly Text", onClick: this.download.bind(this, "wast") },
+										"Wast ",
+										React.createElement("i", { className: "fa fa-download fa-lg", "aria-hidden": "true" })),
+									' ',
+									React.createElement("a", { className: this.wasmCode ? "" : "disabled-link", title: "Download WebAssembly Binary", onClick: this.download.bind(this, "wasm") },
+										"Wasm ",
+										React.createElement("i", { className: "fa fa-download fa-lg", "aria-hidden": "true" })))),
+							React.createElement(Editor_1.EditorComponent, { ref: (self) => this.viewEditor = self, name: "view", save: false, readOnly: true, fontSize: 10 })),
+						React.createElement("div", null,
+							React.createElement("div", { className: "editorHeader" },
+								React.createElement("span", { className: "editorHeaderTitle" }, "Output"),
+								React.createElement("div", { className: "editorHeaderButtons" },
+									React.createElement("a", { title: "Toggle Canvas", onClick: this.toggleCanvas.bind(this) },
+										"Canvas ",
+										React.createElement("i", { className: "fa fa-picture-o fa-lg", "aria-hidden": "true" })),
+									' ',
+									React.createElement("a", { title: "Clear Output: CTRL + Shift + K", onClick: this.clear.bind(this) },
+										"Clear ",
+										React.createElement("i", { className: "fa fa-close fa-lg", "aria-hidden": "true" })))),
+							React.createElement(Editor_1.EditorComponent, { ref: (self) => this.outputEditor = self, name: "output", save: false, readOnly: true, fontSize: 10 })))));
+		}
 	}
 	exports.AppComponent = AppComponent;
 
@@ -820,49 +820,49 @@ cppexport int add(int x, int y) {
 	"use strict";
 	//Object.defineProperty(exports, "__esModule", { value: true });
 	class State {
-	    static sendServiceEvent(label) {
-	        var evt = document.createEvent('CustomEvent');
-	        evt.initCustomEvent('serviceevent', false, false, { 'category': 'Service', 'action': 'send', 'label': label });
-	        window.dispatchEvent(evt);
-	    }
-	    static sendAppEvent(action, label) {
-	        var evt = document.createEvent('CustomEvent');
-	        evt.initCustomEvent('serviceevent', false, false, { 'category': 'App', 'action': action, 'label': label });
-	        window.dispatchEvent(evt);
-	    }
-	    static sendRequest(command, cb) {
-	        var self = this;
-	        var xhr = new XMLHttpRequest();
-	        xhr.addEventListener("load", function () {
-	            cb.call(this);
-	        });
-	        xhr.open("POST", "//wasmexplorer-service.herokuapp.com/service.php", true);
-	        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	        xhr.send(command);
-	    }
-	    static getAnnotations(response) {
-	        // Parse and annotate errors if compilation fails.
-	        var annotations = [];
-	        if (response.indexOf("(module") !== 0) {
-	            var re = /^.*?:(\d+?):(\d+?):(.*)$/gm;
-	            var m;
-	            while ((m = re.exec(response)) !== null) {
-	                if (m.index === re.lastIndex) {
-	                    re.lastIndex++;
-	                }
-	                var line = parseInt(m[1]) - 1;
-	                var column = parseInt(m[2]) - 1;
-	                var message = m[3];
-	                annotations.push({
-	                    row: line,
-	                    column: column,
-	                    text: message,
-	                    type: message.indexOf("error") >= 0 ? "error" : "warning" // also warning and information
-	                });
-	            }
-	        }
-	        return annotations;
-	    }
+		static sendServiceEvent(label) {
+			var evt = document.createEvent('CustomEvent');
+			evt.initCustomEvent('serviceevent', false, false, { 'category': 'Service', 'action': 'send', 'label': label });
+			window.dispatchEvent(evt);
+		}
+		static sendAppEvent(action, label) {
+			var evt = document.createEvent('CustomEvent');
+			evt.initCustomEvent('serviceevent', false, false, { 'category': 'App', 'action': action, 'label': label });
+			window.dispatchEvent(evt);
+		}
+		static sendRequest(command, cb) {
+			var self = this;
+			var xhr = new XMLHttpRequest();
+			xhr.addEventListener("load", function () {
+				cb.call(this);
+			});
+			xhr.open("POST", "//wasmexplorer-service.herokuapp.com/service.php", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send(command);
+		}
+		static getAnnotations(response) {
+			// Parse and annotate errors if compilation fails.
+			var annotations = [];
+			if (response.indexOf("(module") !== 0) {
+				var re = /^.*?:(\d+?):(\d+?):(.*)$/gm;
+				var m;
+				while ((m = re.exec(response)) !== null) {
+					if (m.index === re.lastIndex) {
+						re.lastIndex++;
+					}
+					var line = parseInt(m[1]) - 1;
+					var column = parseInt(m[2]) - 1;
+					var message = m[3];
+					annotations.push({
+						row: line,
+						column: column,
+						text: message,
+						type: message.indexOf("error") >= 0 ? "error" : "warning" // also warning and information
+					});
+				}
+			}
+			return annotations;
+		}
 	}
 	State.fiddleURI = "";
 	exports.State = State;
@@ -876,11 +876,11 @@ cppexport int add(int x, int y) {
 	const React = __webpack_require__(1);
 	const State_1 = __webpack_require__(4);
 	class EditorComponent extends React.Component {
-	    componentDidMount() {
-	        let editor = this.editor = ace.edit(this.container);
-	        var theme = true ? "ace/theme/monokai" : "ace/theme/github";
-	        // editor.setValue(this.props.source, -1);
-	        editor.setOptions({
+		componentDidMount() {
+			let editor = this.editor = ace.edit(this.container);
+			var theme = true ? "ace/theme/monokai" : "ace/theme/github";
+			// editor.setValue(this.props.source, -1);
+			editor.setOptions({
 			readOnly: this.props.readOnly,
 			theme: theme, // local css already imported making this unnececary
 			mode: this.props.mode,
@@ -895,53 +895,53 @@ cppexport int add(int x, int y) {
 			useSoftTabs: false,
 			showPrintMargin: false,
 			tabSize: 4
-	        });
-	        editor.$blockScrolling = Infinity;
-	        editor.renderer.setScrollMargin(10, 10);
-	        let action = this.props.action;
-	        let self = this;
-	        editor.commands.addCommands([{
-	                bindKey: { win: "Ctrl-S", mac: "Command-S" }, exec: function () {
+			});
+			editor.$blockScrolling = Infinity;
+			editor.renderer.setScrollMargin(10, 10);
+			let action = this.props.action;
+			let self = this;
+			editor.commands.addCommands([{
+					bindKey: { win: "Ctrl-S", mac: "Command-S" }, exec: function () {
 				try {
 					State_1.State.app.AnonyCo_saveFunc();
 				} catch(e) {
-	                		State_1.State.app.share();
+							State_1.State.app.share();
 				}
-	                }
-	            },
-	            /*{
-	                bindKey: { win: "Ctrl-Shift-Return", mac: "Ctrl-Shift-Return" }, exec: function () {
-	                    State_1.State.app.build();
-	                }
-	            },
-	            {
-	                bindKey: { win: "Ctrl-Shift-K", mac: "Ctrl-Shift-K" }, exec: function () {
-	                    State_1.State.app.clear();
-	                }
-	            },
-	            {
-	                bindKey: { win: "Ctrl-Return", mac: "Ctrl-Return" }, exec: function () {
-	                    State_1.State.app.runHarness();
-	                }
-	            }*/
-	        ]);
-	    }
-	    onChange() {
-	    }
-	    render() {
-	        return React.createElement("div", { style: this.props.style, ref: (self) => this.container = self, className: "editorBody" });
-	    }
+					}
+				},
+				/*{
+					bindKey: { win: "Ctrl-Shift-Return", mac: "Ctrl-Shift-Return" }, exec: function () {
+						State_1.State.app.build();
+					}
+				},
+				{
+					bindKey: { win: "Ctrl-Shift-K", mac: "Ctrl-Shift-K" }, exec: function () {
+						State_1.State.app.clear();
+					}
+				},
+				{
+					bindKey: { win: "Ctrl-Return", mac: "Ctrl-Return" }, exec: function () {
+						State_1.State.app.runHarness();
+					}
+				}*/
+			]);
+		}
+		onChange() {
+		}
+		render() {
+			return React.createElement("div", { style: this.props.style, ref: (self) => this.container = self, className: "editorBody" });
+		}
 	}
 	EditorComponent.defaultProps = {
-	    // source: "",
-	    mode: "",
-	    action: "",
-	    save: true,
-	    readOnly: false,
-	    showGutter: false,
-	    showLineNumbers: false,
-	    fontSize: 12,
-	    style: null
+		// source: "",
+		mode: "",
+		action: "",
+		save: true,
+		readOnly: false,
+		showGutter: false,
+		showLineNumbers: false,
+		fontSize: 12,
+		style: null
 	};
 	exports.EditorComponent = EditorComponent;
 
@@ -953,126 +953,134 @@ cppexport int add(int x, int y) {
 	//Object.defineProperty(exports, "__esModule", { value: true });
 	const React = __webpack_require__(1);
 	class CompilerOptionsComponent extends React.Component {
-	    constructor() {
-	        super();
-	        this.dialects = ["-std=C89", "-std=C94", "-std=C99", "-std=C11", "-std=C17", "-std=C++98", "-std=C++11", "-std=C++14", "-std=C++1z", "-std=gnu89", "-std=gnu99", "-std=gnu11", "-std=gnu17", "-std=gnu++98", "-std=gnu++11", "-std=gnu++14", "-std=gnu++1z", "-std=cl1.0", "-std=cl1.1", "-std=cl1.2", "-std=cl2.0", "-std=CUDA"];
-	        this.optimizationLevels = ["-O0", "-O1", "-O2", "-O3", "-Ofast", "-O4", "-Os", "-Oz"];
-	        this.state = {
-	            dialect: "-std=C99",
-	            optimizationLevel: "-O1",
-	            compilerVersion: 1
-	        };
-	    }
-	    componentDidMount() {
-	        if (this.props.options) {
-	            this.loadState(this.props.options, this.props.compilerVersion || 1);
-	        }
-	    }
-	    componentWillReceiveProps(props) {
-	        if (props.options) {
-	            this.loadState(props.options, props.compilerVersion);
-	        }
-	    }
-	    optimizationLevelChanged(e) {
-	        this.setState({ optimizationLevel: e.target.value }, () => {
-	            this.onChange();
-	        });
-	    }
-	    newCompilerChanged(e) {
-	        this.setState({ compilerVersion: e.target.checked ? 2 : 1 }, () => {
-	            this.onChange();
-	        });
-	    }
-	    dialectChanged() {
-	        this.setState(
-{dialect: document.getElementsByClassName("cdui_select")[0].value + " " + document.getElementsByClassName("cdui_textarea")[0].value},
-			() => this.onChange()
-		);
-	    }
-	    loadState(options, compilerVersion) {
-	        let s = {};
-	        options.split(" ").forEach(o => {
-	            if (o.indexOf("-O") === 0) {
-	                s.optimizationLevel = o;
-	            }
-	            else if (o.indexOf("-std=") === 0) {
-	                s.dialect = o;
-	            }
-	        });
-	        s.compilerVersion = compilerVersion;
-	        this.setState(s);
-	    }
-	    saveState() {
-	        return [this.state.optimizationLevel, this.state.dialect].join(" ");
-	    }
-	    onChange() {
-	        if (this.props.onChange) {
-	            this.props.onChange(this.saveState(), this.state.compilerVersion);
-	        }
-	    }
-	    render() {
-		return React.createElement(
-			"div", null,
-			React.createElement(
-				"span", null,
+		constructor() {
+			super();
+			this.dialects = ["-std=C89", "-std=C94", "-std=C99", "-std=C11", "-std=C17", "-std=C++98", "-std=C++11", "-std=C++14", "-std=C++1z", "-std=gnu89", "-std=gnu99", "-std=gnu11", "-std=gnu17", "-std=gnu++98", "-std=gnu++11", "-std=gnu++14", "-std=gnu++1z", "-std=cl1.0", "-std=cl1.1", "-std=cl1.2", "-std=cl2.0", "-std=CUDA"];
+			this.optimizationLevels = ["-O0", "-O1", "-O2", "-O3", "-Ofast", "-O4", "-Os", "-Oz"];
+			this.state = {
+				dialect: "-std=C99",
+				optimizationLevel: "-O1",
+				extraCliArgs: "-Wall -Werror",
+				compilerVersion: 1
+			};
+		}
+		componentDidMount() {
+			if (this.props.options) {
+				this.loadState(this.props.options, this.props.compilerVersion || 1);
+			}
+		}
+		componentWillReceiveProps(props) {
+			if (props.options) {
+				this.loadState(props.options, props.compilerVersion);
+			}
+		}
+		optimizationLevelChanged(e) {
+			this.setState({ optimizationLevel: e.target.value }, () => {
+				this.onChange();
+			});
+		}
+		newCompilerChanged(e) {
+			this.setState({ compilerVersion: e.target.checked ? 2 : 1 }, () => {
+				this.onChange();
+			});
+		}
+		dialectChanged() {
+			this.setState({ dialect: e.target.value }, () => {
+				this.onChange();
+			});
+		}
+		extraCliArgsChanged() {
+			this.setState({ extraCliArgs: e.target.value }, () => {
+				this.onChange();
+			});
+		}
+		loadState(options, compilerVersion) {
+			let extraCliArgs = [];
+			let s = {};
+			options.split(" ").forEach(o => {
+				if (o.startsWith("-O") && !("optimizationLevel" in s)) {
+					s.optimizationLevel = o;
+				} else if (o.startsWith("-std=") && !("dialect" in s)) {
+					s.dialect = o;
+				} else {
+					extraCliArgs.push(s);
+				}
+			});
+			s.compilerVersion = compilerVersion;
+			s.extraCliArgs = extraCliArgs.join(" ");
+			this.setState(s);
+		}
+		saveState() {
+			return [
+				this.state.optimizationLevel,
+				this.state.dialect,
+				this.state.extraCliArgs
+			].join(" ");
+		}
+		onChange() {
+			if (this.props.onChange) {
+				this.props.onChange(this.saveState(), this.state.compilerVersion);
+			}
+		}
+		render() {
+			return React.createElement(
+				"div", null,
 				React.createElement(
-					"select", {
-						title: "Optimization Level",
-						value: this.state.optimizationLevel,
-						onChange: this.optimizationLevelChanged.bind(this)
-					},
-					this.optimizationLevels.map(x => React.createElement("option", { key: x }, x))
-				),
-				' ',
-				React.createElement(
-					"select", {
-						title: "Dialect",
-						value: (this.state.dialect.trim()+" ").split(" ",1)[0],
-						id: "cdui_select",
-						className: "cdui_select",
-						onChange: this.dialectChanged.bind(this)
-					},
-					this.dialects.map(x => React.createElement("option", { key: x }, x))
-				)
-			),
-			React.createElement("br", null),
-			React.createElement("textArea", {
-				autocapitalize: "none",
-				wrap: "soft",
-				id: "cdui_textarea",
-				className: "cdui_textarea",
-				value: (this.state.dialect.trim()+" ").split(" ").slice(1).join(" ").trim(),
-				style: {resize:"vertical",width:"100%"},
-				onInput: this.dialectChanged.bind(this)
-			}),
-			React.createElement("br", null),
-			"For more information on clang compiler flags that you can use in the textbox above, please see ",
-			React.createElement(
-				"a", {
-					href: "http://releases.llvm.org/5.0.0/tools/clang/docs/ClangCommandLineReference.html",
-					target: "_blank",
-					
-				},
-				"the clang 5.0.0 command line documentation notes (by clicking on this link)."
-			),
-			React.createElement("br", null),
-			React.createElement("br", null),
-			React.createElement(
-				"span", null,
-				React.createElement(
-					"label", null,
-					"Newer Clang compiler:",
+					"span", null,
 					React.createElement(
-						"input", {
-							type: "checkbox",
-							checked: this.state.compilerVersion == 2,
-							onChange: this.newCompilerChanged.bind(this)
-						}
+						"select", {
+							title: "Optimization Level",
+							value: this.state.optimizationLevel,
+							onChange: this.optimizationLevelChanged.bind(this)
+						},
+						this.optimizationLevels.map(x => React.createElement("option", { key: x }, x))
+					),
+					' ',
+					React.createElement(
+						"select", {
+							title: "Dialect",
+							value: this.state.dialect,
+							onChange: this.dialectChanged.bind(this)
+						},
+						this.dialects.map(x => React.createElement("option", { key: x }, x))
+					)
+				),
+				React.createElement("br", null),
+				React.createElement("textArea", {
+					autocapitalize: "none",
+					wrap: "soft",
+					value: this.state.extraCliArgs,
+					style: {resize:"vertical",width:"100%"},
+					onInput: this.extraCliArgsChanged.bind(this)
+				}),
+				React.createElement("br", null),
+				"For more information on clang compiler flags that you can use in the textbox above, please see ",
+				React.createElement(
+					"a", {
+						href: "http://releases.llvm.org/5.0.0/tools/clang/docs/ClangCommandLineReference.html",
+						target: "_blank",
+						
+					},
+					"the clang 5.0.0 command line documentation notes (by clicking on this link)."
+				),
+				React.createElement("br", null),
+				React.createElement("br", null),
+				React.createElement(
+					"span", null,
+					React.createElement(
+						"label", null,
+						"Newer Clang compiler:",
+						React.createElement(
+							"input", {
+								type: "checkbox",
+								checked: this.state.compilerVersion == 2,
+								onChange: this.newCompilerChanged.bind(this)
+							}
+						)
 					)
 				)
-			)
-		);
-	    }
+			);
+		}
 	}
 	exports.CompilerOptionsComponent = CompilerOptionsComponent;
 
@@ -1083,103 +1091,103 @@ cppexport int add(int x, int y) {
 	"use strict";
 	//Object.defineProperty(exports, "__esModule", { value: true });
 	function UTF8ArrayToString(u8Array, idx) {
-	    var endPtr = idx;
-	    while (u8Array[endPtr])
-	        ++endPtr;
-	    if (endPtr - idx > 16 && u8Array.subarray && UTF8Decoder) {
-	        return UTF8Decoder.decode(u8Array.subarray(idx, endPtr));
-	    }
-	    else {
-	        var u0 = 0, u1 = 0, u2 = 0, u3 = 0, u4 = 0, u5 = 0;
-	        var str = "";
-	        while (1) {
-	            u0 = u8Array[idx++];
-	            if (!u0)
-	                return str;
-	            if (!(u0 & 128)) {
-	                str += String.fromCharCode(u0);
-	                continue;
-	            }
-	            u1 = u8Array[idx++] & 63;
-	            if ((u0 & 224) == 192) {
-	                str += String.fromCharCode((u0 & 31) << 6 | u1);
-	                continue;
-	            }
-	            u2 = u8Array[idx++] & 63;
-	            if ((u0 & 240) == 224) {
-	                u0 = (u0 & 15) << 12 | u1 << 6 | u2;
-	            }
-	            else {
-	                u3 = u8Array[idx++] & 63;
-	                if ((u0 & 248) == 240) {
-	                    u0 = (u0 & 7) << 18 | u1 << 12 | u2 << 6 | u3;
-	                }
-	                else {
-	                    u4 = u8Array[idx++] & 63;
-	                    if ((u0 & 252) == 248) {
-	                        u0 = (u0 & 3) << 24 | u1 << 18 | u2 << 12 | u3 << 6 | u4;
-	                    }
-	                    else {
-	                        u5 = u8Array[idx++] & 63;
-	                        u0 = (u0 & 1) << 30 | u1 << 24 | u2 << 18 | u3 << 12 | u4 << 6 | u5;
-	                    }
-	                }
-	            }
-	            if (u0 < 65536) {
-	                str += String.fromCharCode(u0);
-	            }
-	            else {
-	                var ch = u0 - 65536;
-	                str += String.fromCharCode(55296 | ch >> 10, 56320 | ch & 1023);
-	            }
-	        }
-	    }
+		var endPtr = idx;
+		while (u8Array[endPtr])
+			++endPtr;
+		if (endPtr - idx > 16 && u8Array.subarray && UTF8Decoder) {
+			return UTF8Decoder.decode(u8Array.subarray(idx, endPtr));
+		}
+		else {
+			var u0 = 0, u1 = 0, u2 = 0, u3 = 0, u4 = 0, u5 = 0;
+			var str = "";
+			while (1) {
+				u0 = u8Array[idx++];
+				if (!u0)
+					return str;
+				if (!(u0 & 128)) {
+					str += String.fromCharCode(u0);
+					continue;
+				}
+				u1 = u8Array[idx++] & 63;
+				if ((u0 & 224) == 192) {
+					str += String.fromCharCode((u0 & 31) << 6 | u1);
+					continue;
+				}
+				u2 = u8Array[idx++] & 63;
+				if ((u0 & 240) == 224) {
+					u0 = (u0 & 15) << 12 | u1 << 6 | u2;
+				}
+				else {
+					u3 = u8Array[idx++] & 63;
+					if ((u0 & 248) == 240) {
+						u0 = (u0 & 7) << 18 | u1 << 12 | u2 << 6 | u3;
+					}
+					else {
+						u4 = u8Array[idx++] & 63;
+						if ((u0 & 252) == 248) {
+							u0 = (u0 & 3) << 24 | u1 << 18 | u2 << 12 | u3 << 6 | u4;
+						}
+						else {
+							u5 = u8Array[idx++] & 63;
+							u0 = (u0 & 1) << 30 | u1 << 24 | u2 << 18 | u3 << 12 | u4 << 6 | u5;
+						}
+					}
+				}
+				if (u0 < 65536) {
+					str += String.fromCharCode(u0);
+				}
+				else {
+					var ch = u0 - 65536;
+					str += String.fromCharCode(55296 | ch >> 10, 56320 | ch & 1023);
+				}
+			}
+		}
 	}
 	function setStackPtr(memory, ptr) {
-	    var buffer = memory.buffer || memory;
-	    new Int32Array(buffer)[1] = ptr;
+		var buffer = memory.buffer || memory;
+		new Int32Array(buffer)[1] = ptr;
 	}
 	function dumpMemory(memory, ptr, len) {
-	    let m = new Uint8Array(memory.buffer || memory);
-	    function padAddress(s) {
-	        while (s.length < 8)
-	            s = "0" + s;
-	        return s;
-	    }
-	    function padByte(s) {
-	        while (s.length < 2)
-	            s = "0" + s;
-	        return s;
-	    }
-	    function ascii(i) {
-	        if (i < 32) {
-	            return ".";
-	        }
-	        return String.fromCharCode(i);
-	    }
-	    let str = "";
-	    for (let i = ptr; i < ptr + len; i += 16) {
-	        str += padAddress(i.toString(16).toUpperCase());
-	        str += " ";
-	        for (let j = i; j < i + 16; j++) {
-	            str += padByte(m[j].toString(16).toUpperCase());
-	        }
-	        str += " ";
-	        for (let j = i; j < i + 16; j++) {
-	            str += ascii(m[j]);
-	        }
-	        str += "\n";
-	    }
-	    exports.lib.log(str);
+		let m = new Uint8Array(memory.buffer || memory);
+		function padAddress(s) {
+			while (s.length < 8)
+				s = "0" + s;
+			return s;
+		}
+		function padByte(s) {
+			while (s.length < 2)
+				s = "0" + s;
+			return s;
+		}
+		function ascii(i) {
+			if (i < 32) {
+				return ".";
+			}
+			return String.fromCharCode(i);
+		}
+		let str = "";
+		for (let i = ptr; i < ptr + len; i += 16) {
+			str += padAddress(i.toString(16).toUpperCase());
+			str += " ";
+			for (let j = i; j < i + 16; j++) {
+				str += padByte(m[j].toString(16).toUpperCase());
+			}
+			str += " ";
+			for (let j = i; j < i + 16; j++) {
+				str += ascii(m[j]);
+			}
+			str += "\n";
+		}
+		exports.lib.log(str);
 	}
 	exports.lib = {
-	    log: null,
-	    showCanvas: null,
-	    currentInstance: null,
-	    syscall: null,
-	    UTF8ArrayToString: UTF8ArrayToString,
-	    setStackPtr: setStackPtr,
-	    dumpMemory: dumpMemory
+		log: null,
+		showCanvas: null,
+		currentInstance: null,
+		syscall: null,
+		UTF8ArrayToString: UTF8ArrayToString,
+		setStackPtr: setStackPtr,
+		dumpMemory: dumpMemory
 	};
 
 
@@ -1190,31 +1198,31 @@ cppexport int add(int x, int y) {
 	//Object.defineProperty(exports, "__esModule", { value: true });
 	let memoryStates = new WeakMap();
 	function syscall(wasmInstance, n, ...args) {
-	    switch (n) {
-	        default:
-	            console.error("NYI syscall", arguments);
-	            throw new Error("NYI syscall");
-	        case 45:
-	            return 0;
-	        case 192:
-	            const memory = wasmInstance.exports.memory;
-	            let memoryState = memoryStates.get(wasmInstance);
-	            const requested = args[1];
-	            if (!memoryState) {
-	                memoryState = {
-	                    object: memory,
-	                    currentPosition: memory.buffer.byteLength,
-	                };
-	                memoryStates.set(wasmInstance, memoryState);
-	            }
-	            let cur = memoryState.currentPosition;
-	            if (cur + requested > memory.buffer.byteLength) {
-	                const need = Math.ceil((cur + requested - memory.buffer.byteLength) / 65536);
-	                memory.grow(need);
-	            }
-	            memoryState.currentPosition += requested;
-	            return cur;
-	    }
+		switch (n) {
+			default:
+				console.error("NYI syscall", arguments);
+				throw new Error("NYI syscall");
+			case 45:
+				return 0;
+			case 192:
+				const memory = wasmInstance.exports.memory;
+				let memoryState = memoryStates.get(wasmInstance);
+				const requested = args[1];
+				if (!memoryState) {
+					memoryState = {
+						object: memory,
+						currentPosition: memory.buffer.byteLength,
+					};
+					memoryStates.set(wasmInstance, memoryState);
+				}
+				let cur = memoryState.currentPosition;
+				if (cur + requested > memory.buffer.byteLength) {
+					const need = Math.ceil((cur + requested - memory.buffer.byteLength) / 65536);
+					memory.grow(need);
+				}
+				memoryState.currentPosition += requested;
+				return cur;
+		}
 	}
 	exports.syscall = syscall;
 
@@ -1225,40 +1233,40 @@ cppexport int add(int x, int y) {
 	"use strict";
 	//Object.defineProperty(exports, "__esModule", { value: true });
 	class IFrameSandbox {
-	    constructor(...args) {
-	        var body = args.pop();
-	        var iframe = document.createElement('iframe');
-	        iframe.className = 'hidden';
-	        const BodyAtLine = 1;
-	        iframe.src = URL.createObjectURL(new Blob([`<!DOCTYPE html><html><head><meta charset="utf-8"/></head><body><script>function run(){
+		constructor(...args) {
+			var body = args.pop();
+			var iframe = document.createElement('iframe');
+			iframe.className = 'hidden';
+			const BodyAtLine = 1;
+			iframe.src = URL.createObjectURL(new Blob([`<!DOCTYPE html><html><head><meta charset="utf-8"/></head><body><script>function run(){
 ${body}
 }frameElement.onready();</script></body></html>`], { type: 'text/html' }));
-	        document.body.appendChild(iframe);
-	        this._iframe = iframe;
-	        var onerror = (e, url, line) => {
-	            if (line)
-	                this.onerror(`line ${line - BodyAtLine}: ${e}`);
-	            else
-	                this.onerror(e);
-	        };
-	        var ready = new Promise((resolve) => {
-	            var iframe_ = iframe;
-	            iframe_.onready = () => {
-	                resolve(iframe.contentWindow);
-	            };
-	        });
-	        this.call = function (...values) {
-	            ready.then((w) => {
-	                w.onerror = onerror;
-	                for (var i = 0; i < values.length; i++)
-	                    w[args[i]] = values[i];
-	                w.setTimeout(w.run, 4);
-	            });
-	        };
-	    }
-	    destroy() {
-	        this._iframe.remove();
-	    }
+			document.body.appendChild(iframe);
+			this._iframe = iframe;
+			var onerror = (e, url, line) => {
+				if (line)
+					this.onerror(`line ${line - BodyAtLine}: ${e}`);
+				else
+					this.onerror(e);
+			};
+			var ready = new Promise((resolve) => {
+				var iframe_ = iframe;
+				iframe_.onready = () => {
+					resolve(iframe.contentWindow);
+				};
+			});
+			this.call = function (...values) {
+				ready.then((w) => {
+					w.onerror = onerror;
+					for (var i = 0; i < values.length; i++)
+						w[args[i]] = values[i];
+					w.setTimeout(w.run, 4);
+				});
+			};
+		}
+		destroy() {
+			this._iframe.remove();
+		}
 	}
 	exports.IFrameSandbox = IFrameSandbox;
 
@@ -1282,13 +1290,13 @@ ${body}
 	  // In Firefox CommonJS environment, the module boilerplate thinks it's node,
 	  // but `process` does not exist.
 	  if (typeof process !== "object" && typeof window !== "object" && "function" === "function") {
-	    // null out `require` since no filesystem is necessary in this module, and this
-	    // way the boilerplate thinks its in a shell.
-	    require = null;
-	    // The `print` function only exists in scope when in a node environment,
-	    // and there doesn't seem to account for when in a shell environment and NOT node.js,
-	    // so just stub out the print function.
-	    var print = function(){}
+		// null out `require` since no filesystem is necessary in this module, and this
+		// way the boilerplate thinks its in a shell.
+		require = null;
+		// The `print` function only exists in scope when in a node environment,
+		// and there doesn't seem to account for when in a shell environment and NOT node.js,
+		// so just stub out the print function.
+		var print = function(){}
 	  }
 	
 	var Module = function(Module) {
@@ -1321,15 +1329,15 @@ ${body}
 	  var buf = m._malloc(2048);
 	
 	  return function(func) {
-	    if (func.length >= 2048) return null;
-	    m.writeStringToMemory(func.substr(1), buf);
-	    var ret = m['___cxa_demangle'](buf, 0, 0, status);
-	    var result = null;
-	    if (m.HEAP32[status >> 2] === 0 && ret) {
-	      result = m.Pointer_stringify(ret);
-	      m._free(ret);
-	    }
-	    return result;
+		if (func.length >= 2048) return null;
+		m.writeStringToMemory(func.substr(1), buf);
+		var ret = m['___cxa_demangle'](buf, 0, 0, status);
+		var result = null;
+		if (m.HEAP32[status >> 2] === 0 && ret) {
+		  result = m.Pointer_stringify(ret);
+		  m._free(ret);
+		}
+		return result;
 	  };
 	})();
 	
@@ -1357,79 +1365,79 @@ ${body}
 	var cachedClearTimeout;
 	
 	function defaultSetTimout() {
-	    throw new Error('setTimeout has not been defined');
+		throw new Error('setTimeout has not been defined');
 	}
 	function defaultClearTimeout () {
-	    throw new Error('clearTimeout has not been defined');
+		throw new Error('clearTimeout has not been defined');
 	}
 	(function () {
-	    try {
-	        if (typeof setTimeout === 'function') {
-	            cachedSetTimeout = setTimeout;
-	        } else {
-	            cachedSetTimeout = defaultSetTimout;
-	        }
-	    } catch (e) {
-	        cachedSetTimeout = defaultSetTimout;
-	    }
-	    try {
-	        if (typeof clearTimeout === 'function') {
-	            cachedClearTimeout = clearTimeout;
-	        } else {
-	            cachedClearTimeout = defaultClearTimeout;
-	        }
-	    } catch (e) {
-	        cachedClearTimeout = defaultClearTimeout;
-	    }
+		try {
+			if (typeof setTimeout === 'function') {
+				cachedSetTimeout = setTimeout;
+			} else {
+				cachedSetTimeout = defaultSetTimout;
+			}
+		} catch (e) {
+			cachedSetTimeout = defaultSetTimout;
+		}
+		try {
+			if (typeof clearTimeout === 'function') {
+				cachedClearTimeout = clearTimeout;
+			} else {
+				cachedClearTimeout = defaultClearTimeout;
+			}
+		} catch (e) {
+			cachedClearTimeout = defaultClearTimeout;
+		}
 	} ())
 	function runTimeout(fun) {
-	    if (cachedSetTimeout === setTimeout) {
-	        //normal enviroments in sane situations
-	        return setTimeout(fun, 0);
-	    }
-	    // if setTimeout wasn't available but was latter defined
-	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-	        cachedSetTimeout = setTimeout;
-	        return setTimeout(fun, 0);
-	    }
-	    try {
-	        // when when somebody has screwed with setTimeout but no I.E. maddness
-	        return cachedSetTimeout(fun, 0);
-	    } catch(e){
-	        try {
-	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-	            return cachedSetTimeout.call(null, fun, 0);
-	        } catch(e){
-	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-	            return cachedSetTimeout.call(this, fun, 0);
-	        }
-	    }
+		if (cachedSetTimeout === setTimeout) {
+			//normal enviroments in sane situations
+			return setTimeout(fun, 0);
+		}
+		// if setTimeout wasn't available but was latter defined
+		if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+			cachedSetTimeout = setTimeout;
+			return setTimeout(fun, 0);
+		}
+		try {
+			// when when somebody has screwed with setTimeout but no I.E. maddness
+			return cachedSetTimeout(fun, 0);
+		} catch(e){
+			try {
+				// When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+				return cachedSetTimeout.call(null, fun, 0);
+			} catch(e){
+				// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+				return cachedSetTimeout.call(this, fun, 0);
+			}
+		}
 	
 	
 	}
 	function runClearTimeout(marker) {
-	    if (cachedClearTimeout === clearTimeout) {
-	        //normal enviroments in sane situations
-	        return clearTimeout(marker);
-	    }
-	    // if clearTimeout wasn't available but was latter defined
-	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-	        cachedClearTimeout = clearTimeout;
-	        return clearTimeout(marker);
-	    }
-	    try {
-	        // when when somebody has screwed with setTimeout but no I.E. maddness
-	        return cachedClearTimeout(marker);
-	    } catch (e){
-	        try {
-	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-	            return cachedClearTimeout.call(null, marker);
-	        } catch (e){
-	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-	            return cachedClearTimeout.call(this, marker);
-	        }
-	    }
+		if (cachedClearTimeout === clearTimeout) {
+			//normal enviroments in sane situations
+			return clearTimeout(marker);
+		}
+		// if clearTimeout wasn't available but was latter defined
+		if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+			cachedClearTimeout = clearTimeout;
+			return clearTimeout(marker);
+		}
+		try {
+			// when when somebody has screwed with setTimeout but no I.E. maddness
+			return cachedClearTimeout(marker);
+		} catch (e){
+			try {
+				// When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+				return cachedClearTimeout.call(null, marker);
+			} catch (e){
+				// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+				// Some versions of I.E. have different rules for clearTimeout vs setTimeout
+				return cachedClearTimeout.call(this, marker);
+			}
+		}
 	
 	
 	
@@ -1440,64 +1448,64 @@ ${body}
 	var queueIndex = -1;
 	
 	function cleanUpNextTick() {
-	    if (!draining || !currentQueue) {
-	        return;
-	    }
-	    draining = false;
-	    if (currentQueue.length) {
-	        queue = currentQueue.concat(queue);
-	    } else {
-	        queueIndex = -1;
-	    }
-	    if (queue.length) {
-	        drainQueue();
-	    }
+		if (!draining || !currentQueue) {
+			return;
+		}
+		draining = false;
+		if (currentQueue.length) {
+			queue = currentQueue.concat(queue);
+		} else {
+			queueIndex = -1;
+		}
+		if (queue.length) {
+			drainQueue();
+		}
 	}
 	
 	function drainQueue() {
-	    if (draining) {
-	        return;
-	    }
-	    var timeout = runTimeout(cleanUpNextTick);
-	    draining = true;
+		if (draining) {
+			return;
+		}
+		var timeout = runTimeout(cleanUpNextTick);
+		draining = true;
 	
-	    var len = queue.length;
-	    while(len) {
-	        currentQueue = queue;
-	        queue = [];
-	        while (++queueIndex < len) {
-	            if (currentQueue) {
-	                currentQueue[queueIndex].run();
-	            }
-	        }
-	        queueIndex = -1;
-	        len = queue.length;
-	    }
-	    currentQueue = null;
-	    draining = false;
-	    runClearTimeout(timeout);
+		var len = queue.length;
+		while(len) {
+			currentQueue = queue;
+			queue = [];
+			while (++queueIndex < len) {
+				if (currentQueue) {
+					currentQueue[queueIndex].run();
+				}
+			}
+			queueIndex = -1;
+			len = queue.length;
+		}
+		currentQueue = null;
+		draining = false;
+		runClearTimeout(timeout);
 	}
 	
 	process.nextTick = function (fun) {
-	    var args = new Array(arguments.length - 1);
-	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
-	            args[i - 1] = arguments[i];
-	        }
-	    }
-	    queue.push(new Item(fun, args));
-	    if (queue.length === 1 && !draining) {
-	        runTimeout(drainQueue);
-	    }
+		var args = new Array(arguments.length - 1);
+		if (arguments.length > 1) {
+			for (var i = 1; i < arguments.length; i++) {
+				args[i - 1] = arguments[i];
+			}
+		}
+		queue.push(new Item(fun, args));
+		if (queue.length === 1 && !draining) {
+			runTimeout(drainQueue);
+		}
 	};
 	
 	// v8 likes predictible objects
 	function Item(fun, array) {
-	    this.fun = fun;
-	    this.array = array;
+		this.fun = fun;
+		this.array = array;
 	}
 	Item.prototype.run = function () {
-	    this.fun.apply(null, this.array);
+		this.fun.apply(null, this.array);
 	};
 	process.title = 'browser';
 	process.browser = true;
@@ -1517,12 +1525,12 @@ ${body}
 	process.emit = noop;
 	
 	process.binding = function (name) {
-	    throw new Error('process.binding is not supported');
+		throw new Error('process.binding is not supported');
 	};
 	
 	process.cwd = function () { return '/' };
 	process.chdir = function (dir) {
-	    throw new Error('process.chdir is not supported');
+		throw new Error('process.chdir is not supported');
 	};
 	process.umask = function() { return 0; };
 
@@ -1545,7 +1553,3 @@ ${body}
 
 /***/ }
 /******/ ]);
-
-
-
-
