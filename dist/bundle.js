@@ -985,7 +985,7 @@ cppexport int add(int x, int y) {
 	    }
 	    dialectChanged() {
 	        this.setState(
-{dialect: document.getElementById("cdui_select").value + " " + document.getElementById("cdui_textarea").value},
+{dialect: document.getElementsByClassName("cdui_select")[0].value + " " + document.getElementsByClassName("cdui_textarea")[0].value},
 			() => this.onChange()
 		);
 	    }
@@ -1027,8 +1027,9 @@ cppexport int add(int x, int y) {
 				React.createElement(
 					"select", {
 						title: "Dialect",
-						value: (this.state.dialect+" ").split(" ",1)[0],
-						class: "cdui_select",
+						value: (this.state.dialect.trim()+" ").split(" ",1)[0],
+						id: "cdui_select",
+						className: "cdui_select",
 						onChange: this.dialectChanged.bind(this)
 					},
 					this.dialects.map(x => React.createElement("option", { key: x }, x))
@@ -1038,10 +1039,10 @@ cppexport int add(int x, int y) {
 			React.createElement("textArea", {
 				autocapitalize: "none",
 				wrap: "soft",
-				class: "cdui_textarea",
-				value: (this.state.dialect+"").split(" ").slice(1).join(" "),
+				id: "cdui_textarea",
+				className: "cdui_textarea",
+				value: (this.state.dialect.trim()+" ").split(" ").slice(1).join(" ").trim(),
 				style: {resize:"vertical",width:"100%"},
-				onInput: this.dialectChanged.bind(this),
 				onInput: this.dialectChanged.bind(this)
 			}),
 			React.createElement("br", null),
