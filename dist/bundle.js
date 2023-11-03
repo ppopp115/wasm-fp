@@ -984,12 +984,12 @@ cppexport int add(int x, int y) {
 				this.onChange();
 			});
 		}
-		dialectChanged() {
+		dialectChanged(e) {
 			this.setState({ dialect: e.target.value }, () => {
 				this.onChange();
 			});
 		}
-		extraCliArgsChanged() {
+		extraCliArgsChanged(e) {
 			this.setState({ extraCliArgs: e.target.value }, () => {
 				this.onChange();
 			});
