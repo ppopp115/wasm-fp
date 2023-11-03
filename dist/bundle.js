@@ -1003,7 +1003,7 @@ cppexport int add(int x, int y) {
 				} else if (o.startsWith("-std=") && !("dialect" in s)) {
 					s.dialect = o;
 				} else {
-					extraCliArgs.push(s);
+					extraCliArgs.push(o);
 				}
 			});
 			s.compilerVersion = compilerVersion;
